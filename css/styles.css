@@ -5,12 +5,14 @@
   --line:#DCD3C3; --accent:#D9654A; --accent2:#2F7D6E; --accent3:#B45309; --card:#FFFFFF;
   --fig-bg:#EAE2D4; --fig-cap:#4C6560; --fig-ink:#12302B; --done-bg:#E3F1EC;
   --dia1:var(--accent); --dia2:var(--accent2); --dia3:var(--accent3);
+  --carousel-accent:#6B5CA5;
 }
 @media (prefers-color-scheme: dark){
   :root{
     --ink:#EDE6DA; --soft:#A9BDB6; --paper:#0E2622; --paper2:#15332E;
     --line:#24463F; --accent:#E8846C; --accent2:#6FB7A6; --accent3:#D97706; --card:#15332E;
     --fig-bg:#15332E; --fig-cap:#A9BDB6; --fig-ink:#EDE6DA; --done-bg:#1B4A40;
+    --carousel-accent:#B6A7E0;
   }
 }
 
@@ -213,7 +215,7 @@ dialog.ex-modal .modal-title{font-size:24px; margin:4px 0 14px; padding-right:36
 .alt-slider{position:relative; margin:0 -4px}
 .alt-tabs{
   display:flex; gap:10px; overflow-x:auto; -webkit-overflow-scrolling:touch;
-  scroll-snap-type:x proximity; padding:2px 30px 6px; scrollbar-width:none;
+  scroll-snap-type:x proximity; padding:2px 4px 6px; scrollbar-width:none;
 }
 .alt-tabs::-webkit-scrollbar{display:none}
 .alt-tab{
@@ -223,21 +225,11 @@ dialog.ex-modal .modal-title{font-size:24px; margin:4px 0 14px; padding-right:36
   font-size:13.5px; font-weight:700; line-height:1.3; text-align:center;
   background:var(--paper2); color:var(--soft); border:2px solid transparent;
 }
-.alt-tab[aria-selected="true"]{background:var(--card); color:var(--ink); border-color:var(--day-accent, var(--accent))}
-
-.alt-nav{
-  all:unset; position:absolute; top:50%; transform:translateY(-50%); z-index:2;
-  width:30px; height:30px; border-radius:50%; cursor:pointer;
-  background:var(--card); color:var(--ink); box-shadow:0 2px 10px rgba(0,0,0,.2);
-  display:flex; align-items:center; justify-content:center; font-size:17px; line-height:1;
-}
-.alt-nav-prev{left:0}
-.alt-nav-next{right:0}
-.alt-nav[hidden]{display:none}
+.alt-tab[aria-selected="true"]{background:var(--card); color:var(--carousel-accent); border-color:var(--carousel-accent)}
 
 .alt-dots{display:flex; justify-content:center; gap:6px; margin:2px 0 14px}
 .alt-dot{width:6px; height:6px; border-radius:3px; background:var(--line); cursor:pointer}
-.alt-dot.is-active{width:18px; background:var(--day-accent, var(--accent))}
+.alt-dot.is-active{width:18px; background:var(--carousel-accent)}
 
 .weight-row{display:flex; align-items:center; gap:10px}
 .weight-row label{font-size:14px; font-weight:700; color:var(--soft)}

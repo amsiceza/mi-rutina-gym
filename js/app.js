@@ -243,9 +243,7 @@
 
       ${altOptions.length > 1 ? `
       <div class="alt-slider">
-        <button type="button" class="alt-nav alt-nav-prev" aria-label="Ver alternativa anterior">&#8249;</button>
         <div class="alt-tabs" role="tablist" aria-label="Elegir ejercicio" id="alt-tabs-track">${altTabs}</div>
-        <button type="button" class="alt-nav alt-nav-next" aria-label="Ver siguiente alternativa">&#8250;</button>
       </div>
       <div class="alt-dots">${altDots}</div>
       ` : ""}
@@ -334,20 +332,8 @@
 
     const track = $("#alt-tabs-track", body);
     if (track){
-      const prevBtn = $(".alt-nav-prev", body);
-      const nextBtn = $(".alt-nav-next", body);
-      const updateNav = () => {
-        const max = track.scrollWidth - track.clientWidth;
-        prevBtn.hidden = track.scrollLeft <= 4;
-        nextBtn.hidden = track.scrollLeft >= max - 4;
-      };
-      prevBtn.addEventListener("click", () => track.scrollBy({ left: -track.clientWidth * 0.8, behavior: "smooth" }));
-      nextBtn.addEventListener("click", () => track.scrollBy({ left: track.clientWidth * 0.8, behavior: "smooth" }));
-      track.addEventListener("scroll", updateNav);
-
       const activeTab = track.querySelector('.alt-tab[aria-selected="true"]');
-      if (activeTab) track.scrollLeft = Math.max(0, activeTab.offsetLeft - 14);
-      updateNav();
+      if (activeTab) track.scrollLeft = Math.max(0, activeTab.offsetLeft - 4);
     }
 
     const weightInput = $("#weight-input", body);
