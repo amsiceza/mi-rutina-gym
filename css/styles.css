@@ -237,9 +237,9 @@ dialog.ex-modal .modal-title{font-size:24px; margin:8px 0 16px; padding-right:36
 .weight-step{
   all:unset; box-sizing:border-box; flex:none; width:40px; height:40px; border-radius:50%;
   cursor:pointer; background:var(--day-accent, var(--accent)); color:#fff; font-size:20px; font-weight:800;
-  display:flex; align-items:center; justify-content:center; transition:transform .1s ease;
+  display:flex; align-items:center; justify-content:center; transition:filter .1s ease;
 }
-.weight-step:active{transform:scale(.9)}
+.weight-step:active{filter:brightness(0.75)}
 .weight-value{display:flex; flex:1; align-items:baseline; justify-content:center; gap:5px}
 .weight-value input{
   all:unset; box-sizing:border-box; width:64px; text-align:right;
