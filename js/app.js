@@ -73,6 +73,8 @@
     $$(".day-tab").forEach(btn => {
       btn.setAttribute("aria-selected", String(btn.dataset.day === dayId));
     });
+    const dia = DATA.dias.find(d => d.id === dayId);
+    document.documentElement.style.setProperty("--day-accent", `var(--${dia.colorTag})`);
     renderExerciseGrid();
     renderDayProgress();
   }
@@ -153,10 +155,13 @@
 
     tile.innerHTML = `
       <button type="button" class="tile-open">
-        <div class="tile-fig">${altBadge}${photo}</div>
+        <div class="tile-fig">${photo}</div>
         <div class="tile-head">
           <span class="tile-n">${String(n).padStart(2, "0")}</span>
-          <h3>${escapeHtml(variant.nombre)}</h3>
+          <div class="tile-text">
+            <h3>${escapeHtml(variant.nombre)}</h3>
+            ${altBadge}
+          </div>
         </div>
       </button>
       <label class="tile-check">
