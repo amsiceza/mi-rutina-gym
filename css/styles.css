@@ -229,12 +229,22 @@ dialog.ex-modal .modal-title{font-size:24px; margin:4px 0 14px; padding-right:36
 .alt-dot{width:6px; height:6px; border-radius:3px; background:var(--line); cursor:pointer}
 .alt-dot.is-active{width:18px; background:var(--day-accent, var(--accent))}
 
-.weight-row{display:flex; align-items:center; gap:10px}
-.weight-row label{font-size:14px; font-weight:700; color:var(--soft)}
-.weight-row input{
-  width:90px; padding:9px 10px; border-radius:10px; border:1px solid var(--line);
-  background:var(--card); color:var(--ink); font-size:16px;
+.weight-stepper{
+  display:flex; align-items:center; justify-content:center; gap:6px;
+  background:var(--card); border-radius:999px; padding:6px; max-width:230px;
 }
+.weight-step{
+  all:unset; box-sizing:border-box; flex:none; width:40px; height:40px; border-radius:50%;
+  cursor:pointer; background:var(--paper2); color:var(--ink); font-size:20px; font-weight:800;
+  display:flex; align-items:center; justify-content:center;
+}
+.weight-step:active{background:var(--day-accent, var(--accent)); color:#fff}
+.weight-value{display:flex; flex:1; align-items:baseline; justify-content:center; gap:5px}
+.weight-value input{
+  all:unset; box-sizing:border-box; width:64px; text-align:right;
+  font-size:25px; font-weight:800; font-family:'Fraunces',serif; color:var(--ink);
+}
+.weight-value span{font-size:14px; font-weight:700; color:var(--soft)}
 
 .timer-widget{display:flex; align-items:center; gap:18px}
 .timer-ring{

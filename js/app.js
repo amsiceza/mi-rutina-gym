@@ -287,9 +287,13 @@
         ${showWeightInput ? `
         <div class="train-item">
           <label for="weight-input">🏷️ Peso usado hoy</label>
-          <div class="weight-row">
-            <input type="number" id="weight-input" inputmode="decimal" step="0.5" min="0" placeholder="kg" value="${escapeHtml(savedWeight)}">
-            <span>kg</span>
+          <div class="weight-stepper">
+            <button type="button" class="weight-step" data-dir="-1" aria-label="Restar medio kilo">−</button>
+            <div class="weight-value">
+              <input type="number" id="weight-input" inputmode="decimal" step="0.5" min="0" placeholder="0" value="${escapeHtml(savedWeight)}">
+              <span>kg</span>
+            </div>
+            <button type="button" class="weight-step" data-dir="1" aria-label="Sumar medio kilo">+</button>
           </div>
         </div>` : ""}
 
@@ -347,9 +351,19 @@
 
     const weightInput = $("#weight-input", body);
     if (weightInput){
-      weightInput.addEventListener("change", () => {
+      const saveWeight = () => {
         if (weightInput.value) localStorage.setItem(weightKey, weightInput.value);
         else localStorage.removeItem(weightKey);
+      };
+      weightInput.addEventListener("change", saveWeight);
+      $$(".weight-step", body).forEach(stepBtn => {
+        stepBtn.addEventListener("click", () => {
+          const dir = parseInt(stepBtn.dataset.dir, 10);
+          const current = parseFloat(weightInput.value) || 0;
+          const next = Math.max(0, current + dir * 0.5);
+          weightInput.value = next % 1 === 0 ? next : next.toFixed(1);
+          saveWeight();
+        });
       });
     }
 
