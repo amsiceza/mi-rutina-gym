@@ -11,10 +11,10 @@ Todos los ejercicios, pesos sugeridos, series, repeticiones y descansos están e
 ## Qué incluye
 
 - Mismo estilo visual que la app hermana [`rutina-movilidad`](https://github.com/amsiceza/rutina-movilidad): grid de fichas cuadradas, modal del ejercicio (pantalla completa en el móvil, recuadro centrado desde tablet/escritorio), tipografía Fraunces + Nunito Sans, paleta cálida con modo claro/oscuro automático según el sistema
-- **Fotografía real** de cada uno de los 51 ejercicios y alternativas (no ilustraciones), tomada del dataset abierto [free-exercise-db](https://github.com/yuhonas/free-exercise-db) (dominio público / Unlicense) y guardada dentro del propio repositorio en `img/exercises/` — no depende de ningún servicio externo
-- **Vídeo real incrustado en la propia app** (no un enlace externo): se carga perezosamente al abrir el desplegable "Ver vídeo de referencia", con enlace de escape a YouTube. 49 de los 51 ejercicios tienen un vídeo verificado por búsqueda real (no inventado); los 2 restantes (cardio en cinta y caminata al aire libre, donde no se encontró un tutorial claro) muestran en su lugar un botón de búsqueda en YouTube
+- **Fotografía real** de cada ejercicio y alternativa (no ilustraciones), tomada del dataset abierto [free-exercise-db](https://github.com/yuhonas/free-exercise-db) (dominio público / Unlicense) y guardada dentro del propio repositorio en `img/exercises/` — no depende de ningún servicio externo
+- **Vídeo real incrustado en la propia app** (no un enlace externo): se carga perezosamente al abrir el desplegable "Ver vídeo de referencia", con enlace de escape a YouTube. La mayoría de ejercicios tienen un vídeo verificado por búsqueda real (no inventado); los que no, muestran en su lugar un botón de búsqueda en YouTube
 - Recomendaciones generales pensadas para entrenar con seguridad a los 60 años (calentamiento, cómo elegir el peso con la escala RIR, progresión, cuidado articular, descanso entre sesiones)
-- Cada ejercicio trae **2-3 alternativas** por si un día apetece cambiarlo (se recuerda tu elección)
+- **3 ejercicios reales por grupo muscular** en cada día (antes de pensar en alternativas), y cada uno con sus propias alternativas por si un día apetece cambiarlo. Dentro del modal, el selector de alternativas muestra el nombre real de cada opción (no "Opción 2/3") y se guarda tu elección
 - Peso sugerido y notas de técnica por ejercicio
 - Temporizador de descanso entre series
 - Registro rápido del peso usado, guardado en tu propio móvil/navegador

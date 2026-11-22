@@ -198,10 +198,13 @@
     const variant = getVariant(ex, idx);
     const body = $("#modal-body");
 
-    const altChips = [`<button type="button" class="alt-pill" data-idx="0" aria-pressed="${idx===0}">Principal</button>`];
-    (ex.alternativas || []).forEach((alt, i) => {
-      altChips.push(`<button type="button" class="alt-pill" data-idx="${i+1}" aria-pressed="${idx===i+1}">Opción ${i+2}</button>`);
-    });
+    const altOptions = [{ idx: 0, nombre: ex.nombre }, ...(ex.alternativas || []).map((alt, i) => ({ idx: i+1, nombre: alt.nombre }))];
+    const altRows = altOptions.map(opt => `
+      <button type="button" class="alt-option" data-idx="${opt.idx}" aria-pressed="${idx===opt.idx}">
+        <span class="alt-radio"></span>
+        <span>${escapeHtml(opt.nombre)}</span>
+      </button>
+    `).join("");
 
     const weightKey = LS_WEIGHT_PREFIX + (variant.id || ex.id);
     const savedWeight = localStorage.getItem(weightKey) || "";
@@ -227,8 +230,15 @@
     `;
 
     body.innerHTML = `
+      <div class="modal-group">${escapeHtml(ex.grupoMuscular)}</div>
       <h2 class="modal-title">${escapeHtml(variant.nombre)}</h2>
       ${photo ? `<div class="fig">${photo}</div>` : ""}
+
+      ${altOptions.length > 1 ? `
+      <div class="alt-section">
+        <h4>🔄 Elige qué vas a hacer hoy</h4>
+        <div class="alt-list">${altRows}</div>
+      </div>` : ""}
 
       ${videoBlock}
 
@@ -240,12 +250,6 @@
 
       <p class="tip"><b>💡 Peso recomendado:</b> ${escapeHtml(variant.pesoSugerido)}</p>
       <p class="feel"><b>⚠️ Técnica y cuidado articular:</b> ${escapeHtml(variant.notas)}</p>
-
-      ${(ex.alternativas && ex.alternativas.length) ? `
-      <div class="modal-section">
-        <h4>🔄 Cambiar ejercicio (si hoy te apetece otra variante)</h4>
-        <div class="alt-row">${altChips.join("")}</div>
-      </div>` : ""}
 
       ${showWeightInput ? `
       <div class="modal-section">
@@ -283,7 +287,7 @@
       });
     });
 
-    $$(".alt-pill", body).forEach(chip => {
+    $$(".alt-option", body).forEach(chip => {
       chip.addEventListener("click", () => {
         setChosenIndex(ex, parseInt(chip.dataset.idx, 10));
         renderModalContent();

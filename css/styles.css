@@ -116,7 +116,8 @@ dialog.ex-modal{
 }
 dialog.ex-modal::backdrop{background:rgba(8,18,16,.6)}
 dialog.ex-modal .modal-inner{padding:26px 22px 22px; overflow:auto; max-height:85vh}
-dialog.ex-modal .modal-title{font-size:23px; margin-bottom:10px; padding-right:36px}
+dialog.ex-modal .modal-group{font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:var(--accent); padding-right:36px}
+dialog.ex-modal .modal-title{font-size:23px; margin:2px 0 14px; padding-right:36px}
 .close-x{
   all:unset; box-sizing:border-box; position:absolute; top:14px; right:14px; z-index:2;
   width:36px; height:36px; border-radius:50%; cursor:pointer; background:var(--paper2);
@@ -178,12 +179,24 @@ dialog.ex-modal .modal-title{font-size:23px; margin-bottom:10px; padding-right:3
   color:#fff; display:flex; align-items:center; justify-content:center; font-size:11px;
 }
 
-.alt-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:2px}
-.alt-pill{
-  font-size:13px; font-weight:700; border:none; cursor:pointer; padding:9px 15px; border-radius:999px;
-  background:var(--paper2); color:var(--ink); min-height:40px;
+.alt-section{
+  background:var(--paper2); border-radius:16px; padding:14px; margin-bottom:14px;
 }
-.alt-pill[aria-pressed="true"]{background:var(--ink); color:var(--paper)}
+.alt-section h4{color:var(--ink); font-size:13px; margin-bottom:10px}
+.alt-list{display:flex; flex-direction:column; gap:8px}
+.alt-option{
+  all:unset; box-sizing:border-box; display:flex; align-items:center; gap:12px; width:100%;
+  padding:12px 14px; border-radius:12px; background:var(--card); color:var(--ink);
+  font-weight:700; font-size:14px; cursor:pointer; min-height:48px;
+}
+.alt-option .alt-radio{
+  flex:none; width:18px; height:18px; border-radius:50%; border:2px solid var(--line); position:relative;
+}
+.alt-option[aria-pressed="true"]{background:var(--ink); color:var(--paper)}
+.alt-option[aria-pressed="true"] .alt-radio{border-color:var(--paper)}
+.alt-option[aria-pressed="true"] .alt-radio::after{
+  content:""; position:absolute; inset:3px; border-radius:50%; background:var(--paper);
+}
 
 .weight-row{display:flex; align-items:center; gap:10px}
 .weight-row label{font-size:14px; font-weight:700; color:var(--soft)}

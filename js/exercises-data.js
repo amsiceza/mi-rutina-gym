@@ -73,16 +73,6 @@ window.EXERCISES_DATA = {
             },
             {
               "id": "d1-pecho-1-alt2",
-              "nombre": "Press de pecho en máquina multifuncional (polea, empuje horizontal)",
-              "equipo": "Máquina multifuncional (polea)",
-              "series": 3,
-              "repeticiones": "10-12",
-              "descansoSeg": 90,
-              "pesoSugerido": "Coloca las poleas a la altura del pecho; empieza con poco peso para dominar la trayectoria antes de subir carga.",
-              "notas": "Da un paso adelante para tensar bien el cable antes de empujar; evita que los hombros se adelanten."
-            },
-            {
-              "id": "d1-pecho-1-alt3",
               "nombre": "Flexiones de pecho (push-ups)",
               "equipo": "Peso corporal (sin material)",
               "series": 3,
@@ -96,6 +86,29 @@ window.EXERCISES_DATA = {
         {
           "id": "d1-pecho-2",
           "grupoMuscular": "Pecho",
+          "nombre": "Press de pecho en máquina multifuncional (polea, empuje horizontal)",
+          "equipo": "Máquina multifuncional (polea)",
+          "series": 3,
+          "repeticiones": "10-12",
+          "descansoSeg": 90,
+          "pesoSugerido": "Coloca las poleas a la altura del pecho; empieza con poco peso para dominar la trayectoria antes de subir carga.",
+          "notas": "Da un paso adelante para tensar bien el cable antes de empujar; evita que los hombros se adelanten.",
+          "alternativas": [
+            {
+              "id": "d1-pecho-2-alt1",
+              "nombre": "Aperturas de pie en polea (de pie, un cable a la vez)",
+              "equipo": "Máquina multifuncional (polea)",
+              "series": 3,
+              "repeticiones": "12-15",
+              "descansoSeg": 75,
+              "pesoSugerido": "Carga ligera por lado; prioriza sentir el pecho trabajar antes que la cantidad de peso.",
+              "notas": "Da un paso al frente para mantener tensión constante en el cable durante toda la serie."
+            }
+          ]
+        },
+        {
+          "id": "d1-pecho-3",
+          "grupoMuscular": "Pecho",
           "nombre": "Aperturas de pecho en polea (cruce de poleas)",
           "equipo": "Máquina multifuncional (polea)",
           "series": 3,
@@ -105,7 +118,7 @@ window.EXERCISES_DATA = {
           "notas": "Codos ligeramente flexionados y fijos durante todo el recorrido; evita llevar el brazo demasiado atrás del cuerpo para proteger el hombro.",
           "alternativas": [
             {
-              "id": "d1-pecho-2-alt1",
+              "id": "d1-pecho-3-alt1",
               "nombre": "Aperturas de pecho con mancuernas (tumbado)",
               "equipo": "Mancuernas",
               "series": 3,
@@ -113,16 +126,6 @@ window.EXERCISES_DATA = {
               "descansoSeg": 75,
               "pesoSugerido": "Empieza con mancuernas ligeras (2-4 kg); este ejercicio exige más control del hombro que peso.",
               "notas": "Mantén un ligero arco en los brazos durante todo el movimiento, como 'abrazando un árbol'."
-            },
-            {
-              "id": "d1-pecho-2-alt2",
-              "nombre": "Aperturas de pie en polea (de pie, un cable a la vez)",
-              "equipo": "Máquina multifuncional (polea)",
-              "series": 3,
-              "repeticiones": "12-15",
-              "descansoSeg": 75,
-              "pesoSugerido": "Carga ligera por lado; prioriza sentir el pecho trabajar antes que la cantidad de peso.",
-              "notas": "Da un paso al frente para mantener tensión constante en el cable durante toda la serie."
             }
           ]
         },
@@ -139,16 +142,6 @@ window.EXERCISES_DATA = {
           "alternativas": [
             {
               "id": "d1-triceps-1-alt1",
-              "nombre": "Press francés con mancuerna (a dos manos)",
-              "equipo": "Mancuernas",
-              "series": 3,
-              "repeticiones": "10-12",
-              "descansoSeg": 60,
-              "pesoSugerido": "Empieza con una mancuerna ligera (3-5 kg en total) hasta dominar la trayectoria detrás de la cabeza.",
-              "notas": "Codos apuntando al techo y fijos; baja la mancuerna de forma lenta y controlada detrás de la cabeza."
-            },
-            {
-              "id": "d1-triceps-1-alt2",
               "nombre": "Extensión de tríceps a un brazo con mancuerna",
               "equipo": "Mancuernas",
               "series": 3,
@@ -156,16 +149,52 @@ window.EXERCISES_DATA = {
               "descansoSeg": 60,
               "pesoSugerido": "Mancuerna ligera (2-4 kg); al ser un brazo cada vez, se necesita menos peso que con los dos brazos.",
               "notas": "Sujeta el codo con la otra mano para que no se abra hacia fuera durante el ejercicio."
-            },
+            }
+          ]
+        },
+        {
+          "id": "d1-triceps-2",
+          "grupoMuscular": "Tríceps",
+          "nombre": "Press francés con mancuerna (a dos manos)",
+          "equipo": "Mancuernas",
+          "series": 3,
+          "repeticiones": "10-12",
+          "descansoSeg": 60,
+          "pesoSugerido": "Empieza con una mancuerna ligera (3-5 kg en total) hasta dominar la trayectoria detrás de la cabeza.",
+          "notas": "Codos apuntando al techo y fijos; baja la mancuerna de forma lenta y controlada detrás de la cabeza.",
+          "alternativas": [
             {
-              "id": "d1-triceps-1-alt3",
-              "nombre": "Fondos de tríceps en banco",
-              "equipo": "Peso corporal (banco o silla estable)",
+              "id": "d1-triceps-2-alt1",
+              "nombre": "Extensión de tríceps a un brazo con mancuerna",
+              "equipo": "Mancuernas",
               "series": 3,
-              "repeticiones": "8-12",
+              "repeticiones": "10-12 por brazo",
               "descansoSeg": 60,
-              "pesoSugerido": "Regula la dificultad con la flexión de rodillas: piernas más flexionadas = ejercicio más suave.",
-              "notas": "Baja solo hasta donde el hombro esté cómodo; evita bajar en exceso para no sobrecargar la articulación."
+              "pesoSugerido": "Mancuerna ligera (2-4 kg); al ser un brazo cada vez, se necesita menos peso que con los dos brazos.",
+              "notas": "Sujeta el codo con la otra mano para que no se abra hacia fuera durante el ejercicio."
+            }
+          ]
+        },
+        {
+          "id": "d1-triceps-3",
+          "grupoMuscular": "Tríceps",
+          "nombre": "Fondos de tríceps en banco",
+          "equipo": "Peso corporal (banco o silla estable)",
+          "series": 3,
+          "repeticiones": "8-12",
+          "descansoSeg": 60,
+          "pesoSugerido": "Regula la dificultad con la flexión de rodillas: piernas más flexionadas = ejercicio más suave.",
+          "notas": "Baja solo hasta donde el hombro esté cómodo; evita bajar en exceso para no sobrecargar la articulación.",
+          "alternativas": [
+            {
+              "id": "d1-triceps-3-alt1",
+              "nombre": "Extensión de tríceps a un brazo con mancuerna",
+              "equipo": "Mancuernas",
+              "series": 3,
+              "repeticiones": "10-12 por brazo",
+              "descansoSeg": 60,
+              "pesoSugerido": "Mancuerna ligera (2-4 kg); al ser un brazo cada vez, se necesita menos peso que con los dos brazos.",
+              "notas": "Sujeta el codo con la otra mano para que no se abra hacia fuera durante el ejercicio."
             }
           ]
         },
@@ -182,23 +211,14 @@ window.EXERCISES_DATA = {
           "alternativas": [
             {
               "id": "d1-abs-1-alt1",
-              "nombre": "Encogimientos abdominales (crunch)",
+              "grupoMuscular": "Abdominales",
+              "nombre": "Plancha lateral",
               "equipo": "Peso corporal (sin material)",
               "series": 3,
-              "repeticiones": "12-15",
+              "repeticiones": "20-30 segundos por lado",
               "descansoSeg": 45,
-              "pesoSugerido": "Sin peso externo; progresa aumentando repeticiones o controlando más la bajada.",
-              "notas": "Sube solo los hombros del suelo, sin tirar del cuello con las manos."
-            },
-            {
-              "id": "d1-abs-1-alt2",
-              "nombre": "Elevación de rodillas al pecho (tumbado)",
-              "equipo": "Peso corporal (sin material)",
-              "series": 3,
-              "repeticiones": "12-15",
-              "descansoSeg": 45,
-              "pesoSugerido": "Sin peso externo; mantén la zona lumbar pegada al suelo durante todo el ejercicio.",
-              "notas": "Si notas la zona lumbar, reduce el recorrido y sube las rodillas solo hasta donde la espalda se mantenga pegada al suelo."
+              "pesoSugerido": "Isométrico: progresa aumentando el tiempo mantenido en cada lado, no con peso.",
+              "notas": "Cadera elevada en línea con el cuerpo; si tiembla mucho, apoya la rodilla de abajo en el suelo."
             }
           ]
         },
@@ -210,21 +230,34 @@ window.EXERCISES_DATA = {
           "series": 3,
           "repeticiones": "10-15",
           "descansoSeg": 45,
-          "pesoSugerido": "Sin peso externo; si es muy exigente para la zona lumbar, flexiona ligeramente las rodillas.",
-          "notas": "Mantén la espalda baja pegada al suelo en todo momento; si se despega, el recorrido es demasiado amplio.",
+          "pesoSugerido": "Sin peso externo; flexiona ligeramente las rodillas si notas tensión en la zona lumbar.",
+          "notas": "Espalda baja pegada al suelo durante todo el ejercicio.",
           "alternativas": [
             {
               "id": "d1-abs-2-alt1",
-              "nombre": "Plancha lateral",
+              "nombre": "Elevación de rodillas al pecho (tumbado)",
               "equipo": "Peso corporal (sin material)",
               "series": 3,
-              "repeticiones": "20-30 segundos por lado",
+              "repeticiones": "12-15",
               "descansoSeg": 45,
-              "pesoSugerido": "Isométrico: progresa aumentando el tiempo mantenido en cada lado.",
-              "notas": "Cadera elevada en línea con el cuerpo, sin dejarla caer hacia el suelo."
-            },
+              "pesoSugerido": "Sin peso externo; mantén la zona lumbar pegada al suelo durante todo el ejercicio.",
+              "notas": "Si notas la zona lumbar, reduce el recorrido y sube las rodillas solo hasta donde la espalda se mantenga pegada al suelo."
+            }
+          ]
+        },
+        {
+          "id": "d1-abs-3",
+          "grupoMuscular": "Abdominales",
+          "nombre": "Encogimientos abdominales (crunch)",
+          "equipo": "Peso corporal (sin material)",
+          "series": 3,
+          "repeticiones": "12-15",
+          "descansoSeg": 45,
+          "pesoSugerido": "Sin peso externo; progresa con más repeticiones o bajadas más lentas.",
+          "notas": "Sube solo los hombros del suelo, sin tirar del cuello con las manos.",
+          "alternativas": [
             {
-              "id": "d1-abs-2-alt2",
+              "id": "d1-abs-3-alt1",
               "nombre": "Bicicleta abdominal (crunch con giro)",
               "equipo": "Peso corporal (sin material)",
               "series": 3,
@@ -297,18 +330,19 @@ window.EXERCISES_DATA = {
               "descansoSeg": 60,
               "pesoSugerido": "Carga ligera por lado; la polea mantiene tensión constante durante todo el recorrido.",
               "notas": "Cuerpo estable, sin balancear el torso para ayudar a subir el brazo."
-            },
-            {
-              "id": "d2-hombro-2-alt2",
-              "nombre": "Elevaciones frontales con mancuernas",
-              "equipo": "Mancuernas",
-              "series": 3,
-              "repeticiones": "12-15",
-              "descansoSeg": 60,
-              "pesoSugerido": "Mancuernas ligeras (2-3 kg); sube solo hasta la altura de los hombros.",
-              "notas": "Alterna un brazo u otro si notas más cómodo que subir ambos a la vez."
             }
           ]
+        },
+        {
+          "id": "d2-hombro-3",
+          "grupoMuscular": "Hombros",
+          "nombre": "Elevaciones frontales con mancuernas",
+          "equipo": "Mancuernas",
+          "series": 3,
+          "repeticiones": "12-15",
+          "descansoSeg": 60,
+          "pesoSugerido": "Mancuernas ligeras (2-3 kg); sube solo hasta la altura de los hombros.",
+          "notas": "Alterna un brazo u otro si notas más cómodo que subir ambos a la vez."
         },
         {
           "id": "d2-biceps-1",
@@ -323,16 +357,6 @@ window.EXERCISES_DATA = {
           "alternativas": [
             {
               "id": "d2-biceps-1-alt1",
-              "nombre": "Curl de bíceps con mancuernas (alterno)",
-              "equipo": "Mancuernas",
-              "series": 3,
-              "repeticiones": "10-12 por brazo",
-              "descansoSeg": 60,
-              "pesoSugerido": "Empieza con 4-6 kg por mancuerna y ajusta según la sensación de las últimas repeticiones.",
-              "notas": "Gira ligeramente la muñeca hacia afuera al final del recorrido para activar mejor el bíceps."
-            },
-            {
-              "id": "d2-biceps-1-alt2",
               "nombre": "Curl de bíceps en polea baja",
               "equipo": "Máquina multifuncional (polea)",
               "series": 3,
@@ -340,18 +364,42 @@ window.EXERCISES_DATA = {
               "descansoSeg": 60,
               "pesoSugerido": "La polea da tensión constante; empieza con poco peso y nota la diferencia respecto a barra o mancuernas.",
               "notas": "Mantén los codos fijos junto al cuerpo durante toda la serie."
-            },
-            {
-              "id": "d2-biceps-1-alt3",
-              "nombre": "Curl martillo con mancuernas",
-              "equipo": "Mancuernas",
-              "series": 3,
-              "repeticiones": "10-12 por brazo",
-              "descansoSeg": 60,
-              "pesoSugerido": "Mismo peso de referencia que el curl normal con mancuernas; ajusta si notas el antebrazo más limitante.",
-              "notas": "Mantén la muñeca neutra (como si sujetaras un martillo) durante todo el movimiento."
             }
           ]
+        },
+        {
+          "id": "d2-biceps-2",
+          "grupoMuscular": "Bíceps",
+          "nombre": "Curl de bíceps con mancuernas (alterno)",
+          "equipo": "Mancuernas",
+          "series": 3,
+          "repeticiones": "10-12 por brazo",
+          "descansoSeg": 60,
+          "pesoSugerido": "Empieza con 4-6 kg por mancuerna y ajusta según la sensación de las últimas repeticiones.",
+          "notas": "Gira ligeramente la muñeca hacia afuera al final del recorrido para activar mejor el bíceps.",
+          "alternativas": [
+            {
+              "id": "d2-biceps-2-alt1",
+              "nombre": "Curl de bíceps en polea baja",
+              "equipo": "Máquina multifuncional (polea)",
+              "series": 3,
+              "repeticiones": "10-12",
+              "descansoSeg": 60,
+              "pesoSugerido": "La polea da tensión constante; empieza con poco peso y nota la diferencia respecto a barra o mancuernas.",
+              "notas": "Mantén los codos fijos junto al cuerpo durante toda la serie."
+            }
+          ]
+        },
+        {
+          "id": "d2-biceps-3",
+          "grupoMuscular": "Bíceps",
+          "nombre": "Curl martillo con mancuernas",
+          "equipo": "Mancuernas",
+          "series": 3,
+          "repeticiones": "10-12 por brazo",
+          "descansoSeg": 60,
+          "pesoSugerido": "Mismo peso de referencia que el curl normal con mancuernas; ajusta si notas el antebrazo más limitante.",
+          "notas": "Mantén la muñeca neutra (como si sujetaras un martillo) durante todo el movimiento."
         },
         {
           "id": "d2-aerobico-1",
@@ -418,6 +466,16 @@ window.EXERCISES_DATA = {
           "alternativas": [
             {
               "id": "d3-espalda-1-alt1",
+              "nombre": "Remo con mancuernas inclinado (a dos manos)",
+              "equipo": "Mancuernas",
+              "series": 3,
+              "repeticiones": "10-12",
+              "descansoSeg": 75,
+              "pesoSugerido": "Empieza con 4-6 kg por mancuerna; mantén siempre la espalda recta durante toda la serie.",
+              "notas": "Flexiona ligeramente las rodillas y mantén el pecho orientado hacia el suelo, sin redondear la espalda."
+            },
+            {
+              "id": "d3-espalda-1-alt2",
               "nombre": "Remo con mancuerna a una mano (apoyado en banco)",
               "equipo": "Mancuernas",
               "series": 3,
@@ -425,26 +483,6 @@ window.EXERCISES_DATA = {
               "descansoSeg": 75,
               "pesoSugerido": "Empieza con 5-8 kg; el apoyo en el banco protege la zona lumbar al tener menos exigencia de equilibrio.",
               "notas": "Lleva el codo hacia atrás pegado al cuerpo, sin girar el torso para ayudarte."
-            },
-            {
-              "id": "d3-espalda-1-alt2",
-              "nombre": "Remo sentado en polea baja",
-              "equipo": "Máquina multifuncional (polea)",
-              "series": 3,
-              "repeticiones": "10-12",
-              "descansoSeg": 75,
-              "pesoSugerido": "Carga moderada; al estar sentado hay menos exigencia lumbar, ideal si notas molestias con el remo de pie.",
-              "notas": "Pecho alto y hombros hacia atrás al final de cada repetición, sin usar impulso del tronco."
-            },
-            {
-              "id": "d3-espalda-1-alt3",
-              "nombre": "Jalón al pecho en polea alta",
-              "equipo": "Máquina multifuncional (polea)",
-              "series": 3,
-              "repeticiones": "10-12",
-              "descansoSeg": 75,
-              "pesoSugerido": "Carga moderada: controla especialmente la fase de subida (vuelta) para no forzar el hombro.",
-              "notas": "Lleva la barra hacia la parte alta del pecho, sin tirar con el cuello hacia delante."
             }
           ]
         },
@@ -461,6 +499,16 @@ window.EXERCISES_DATA = {
           "alternativas": [
             {
               "id": "d3-espalda-2-alt1",
+              "nombre": "Jalón al pecho en polea alta",
+              "equipo": "Máquina multifuncional (polea)",
+              "series": 3,
+              "repeticiones": "10-12",
+              "descansoSeg": 75,
+              "pesoSugerido": "Carga moderada: controla especialmente la fase de subida (vuelta) para no forzar el hombro.",
+              "notas": "Lleva la barra hacia la parte alta del pecho, sin tirar con el cuello hacia delante."
+            },
+            {
+              "id": "d3-espalda-2-alt2",
               "nombre": "Pull-over en polea alta",
               "equipo": "Máquina multifuncional (polea)",
               "series": 3,
@@ -468,18 +516,19 @@ window.EXERCISES_DATA = {
               "descansoSeg": 75,
               "pesoSugerido": "Carga ligera-moderada; prioriza sentir el estiramiento de la espalda en la fase alta del movimiento.",
               "notas": "Brazos casi extendidos durante todo el recorrido, con un ligero quiebre de codo fijo."
-            },
-            {
-              "id": "d3-espalda-2-alt2",
-              "nombre": "Remo con mancuernas inclinado (a dos manos)",
-              "equipo": "Mancuernas",
-              "series": 3,
-              "repeticiones": "10-12",
-              "descansoSeg": 75,
-              "pesoSugerido": "Empieza con 4-6 kg por mancuerna; mantén siempre la espalda recta durante toda la serie.",
-              "notas": "Flexiona ligeramente las rodillas y mantén el pecho orientado hacia el suelo, sin redondear la espalda."
             }
           ]
+        },
+        {
+          "id": "d3-espalda-3",
+          "grupoMuscular": "Espalda",
+          "nombre": "Remo sentado en polea baja",
+          "equipo": "Máquina multifuncional (polea)",
+          "series": 3,
+          "repeticiones": "10-12",
+          "descansoSeg": 75,
+          "pesoSugerido": "Carga moderada; al estar sentado hay menos exigencia lumbar, ideal si notas molestias con el remo de pie.",
+          "notas": "Pecho alto y hombros hacia atrás al final de cada repetición, sin usar impulso del tronco."
         },
         {
           "id": "d3-pierna-1",
@@ -504,16 +553,6 @@ window.EXERCISES_DATA = {
             },
             {
               "id": "d3-pierna-1-alt2",
-              "nombre": "Zancadas (lunges) con mancuernas",
-              "equipo": "Mancuernas",
-              "series": 3,
-              "repeticiones": "8-10 por pierna",
-              "descansoSeg": 90,
-              "pesoSugerido": "Empieza sin peso o con mancuernas ligeras (3-5 kg) hasta controlar bien el equilibrio.",
-              "notas": "Paso controlado, rodilla de atrás sin golpear el suelo; usa apoyo de una pared o silla si necesitas equilibrio extra."
-            },
-            {
-              "id": "d3-pierna-1-alt3",
               "nombre": "Sentadilla/prensa en máquina multifuncional",
               "equipo": "Máquina multifuncional",
               "series": 3,
@@ -558,6 +597,17 @@ window.EXERCISES_DATA = {
           ]
         },
         {
+          "id": "d3-pierna-3",
+          "grupoMuscular": "Pierna",
+          "nombre": "Zancadas (lunges) con mancuernas",
+          "equipo": "Mancuernas",
+          "series": 3,
+          "repeticiones": "8-10 por pierna",
+          "descansoSeg": 90,
+          "pesoSugerido": "Empieza sin peso o con mancuernas ligeras (3-5 kg) hasta controlar bien el equilibrio.",
+          "notas": "Paso controlado, rodilla de atrás sin golpear el suelo; usa apoyo de una pared o silla si necesitas equilibrio extra."
+        },
+        {
           "id": "d3-abs-1",
           "grupoMuscular": "Abdominales",
           "nombre": "Plancha lateral",
@@ -577,21 +627,34 @@ window.EXERCISES_DATA = {
               "descansoSeg": 45,
               "pesoSugerido": "Isométrico: progresa aumentando el tiempo mantenido.",
               "notas": "Cuerpo en línea recta de cabeza a pies, sin dejar caer la cadera."
-            },
-            {
-              "id": "d3-abs-1-alt2",
-              "nombre": "Elevación de piernas tumbado",
-              "equipo": "Peso corporal (sin material)",
-              "series": 3,
-              "repeticiones": "10-15",
-              "descansoSeg": 45,
-              "pesoSugerido": "Sin peso externo; flexiona ligeramente las rodillas si notas tensión en la zona lumbar.",
-              "notas": "Espalda baja pegada al suelo durante todo el ejercicio."
             }
           ]
         },
         {
           "id": "d3-abs-2",
+          "grupoMuscular": "Abdominales",
+          "nombre": "Elevación de piernas tumbado",
+          "equipo": "Peso corporal (sin material)",
+          "series": 3,
+          "repeticiones": "10-15",
+          "descansoSeg": 45,
+          "pesoSugerido": "Sin peso externo; flexiona ligeramente las rodillas si notas tensión en la zona lumbar.",
+          "notas": "Espalda baja pegada al suelo durante todo el ejercicio.",
+          "alternativas": [
+            {
+              "id": "d3-abs-2-alt1",
+              "nombre": "Encogimientos abdominales (crunch)",
+              "equipo": "Peso corporal (sin material)",
+              "series": 3,
+              "repeticiones": "12-15",
+              "descansoSeg": 45,
+              "pesoSugerido": "Sin peso externo; progresa con más repeticiones o bajadas más lentas.",
+              "notas": "Sube solo los hombros del suelo, sin tirar del cuello con las manos."
+            }
+          ]
+        },
+        {
+          "id": "d3-abs-3",
           "grupoMuscular": "Abdominales",
           "nombre": "Crunch con giro (oblicuos)",
           "equipo": "Peso corporal (sin material)",
@@ -602,7 +665,7 @@ window.EXERCISES_DATA = {
           "notas": "Lleva el codo hacia la rodilla contraria girando el torso, no solo el brazo.",
           "alternativas": [
             {
-              "id": "d3-abs-2-alt1",
+              "id": "d3-abs-3-alt1",
               "nombre": "Bicicleta abdominal",
               "equipo": "Peso corporal (sin material)",
               "series": 3,
@@ -610,16 +673,6 @@ window.EXERCISES_DATA = {
               "descansoSeg": 45,
               "pesoSugerido": "Sin peso externo; prioriza el control sobre la velocidad.",
               "notas": "Extiende bien la pierna contraria para implicar más a la zona abdominal baja."
-            },
-            {
-              "id": "d3-abs-2-alt2",
-              "nombre": "Encogimientos abdominales (crunch)",
-              "equipo": "Peso corporal (sin material)",
-              "series": 3,
-              "repeticiones": "12-15",
-              "descansoSeg": 45,
-              "pesoSugerido": "Sin peso externo; progresa con más repeticiones o bajadas más lentas.",
-              "notas": "Sube solo los hombros del suelo, sin tirar del cuello con las manos."
             }
           ]
         }
