@@ -1,4 +1,4 @@
-{
+window.EXERCISES_DATA = {
   "meta": {
     "titulo": "Mi Rutina de Fuerza — 3 días",
     "objetivo": "Aumento de masa muscular (hipertrofia)",
@@ -627,3 +627,4 @@
     }
   ]
 }
+;

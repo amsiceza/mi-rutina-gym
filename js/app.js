@@ -41,12 +41,14 @@
   }
 
   // ---------- Carga de datos ----------
+  // Los datos vienen embebidos en js/exercises-data.js (window.EXERCISES_DATA)
+  // en lugar de cargarse con fetch, para que la app funcione también abriendo
+  // index.html directamente con doble clic (file://), sin necesitar servidor.
   function loadData(){
-    return fetch("data/exercises.json")
-      .then(r => {
-        if (!r.ok) throw new Error("No se pudo cargar data/exercises.json");
-        return r.json();
-      });
+    return new Promise((resolve, reject) => {
+      if (window.EXERCISES_DATA) resolve(window.EXERCISES_DATA);
+      else reject(new Error("No se encontró EXERCISES_DATA. ¿Falta cargar js/exercises-data.js?"));
+    });
   }
 
   // ---------- Recomendaciones ----------
@@ -379,7 +381,7 @@
       const validDay = DATA.dias.some(d => d.id === savedDay) ? savedDay : DATA.dias[0].id;
       selectDay(validDay);
     }).catch(err => {
-      $("#exercise-grid").innerHTML = `<p style="color:#b00020">No se pudo cargar la rutina (${escapeHtml(err.message)}). Si abriste el archivo directamente con doble clic, usa un servidor local o GitHub Pages: el navegador bloquea la carga de JSON desde "file://".</p>`;
+      $("#exercise-grid").innerHTML = `<p style="color:#b00020">No se pudo cargar la rutina (${escapeHtml(err.message)}). Asegúrate de que el archivo js/exercises-data.js esté presente y se cargue antes que js/app.js.</p>`;
     });
   }
 

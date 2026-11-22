@@ -6,7 +6,7 @@ Web de una sola página (sin backend, sin build) para seguir una rutina de **3 d
 - **Día 2** — Hombros, bíceps + aeróbico
 - **Día 3** — Espalda, pierna y abdominales
 
-Todos los ejercicios, pesos sugeridos, series, repeticiones y descansos están en [`data/exercises.json`](data/exercises.json) — para añadir, quitar o ajustar algo solo hay que editar ese archivo, no hace falta tocar código.
+Todos los ejercicios, pesos sugeridos, series, repeticiones y descansos están en [`js/exercises-data.js`](js/exercises-data.js) — para añadir, quitar o ajustar algo solo hay que editar ese archivo, no hace falta tocar el resto del código.
 
 ## Qué incluye
 
@@ -22,13 +22,7 @@ Todo se guarda únicamente en el `localStorage` de tu navegador: no hay servidor
 
 ## Ver la rutina en local
 
-Como la app carga `data/exercises.json` con `fetch`, el navegador bloquea esa carga si abres `index.html` con doble clic (protocolo `file://`). Usa un servidor local simple:
-
-```bash
-cd mi-rutina-gym
-python3 -m http.server 8080
-# abre http://localhost:8080 en el navegador
-```
+Abre `index.html` directamente con doble clic, sin necesidad de servidor ni instalar nada: los datos están embebidos en `js/exercises-data.js`, así que funciona tal cual con doble clic.
 
 ## Publicar en GitHub Pages
 
@@ -41,9 +35,9 @@ No hace falta build, Node ni dependencias: es HTML/CSS/JS plano.
 
 ## Ajustar la rutina
 
-Para cambiar un ejercicio, peso sugerido, series, repeticiones o añadir una alternativa nueva, edita `data/exercises.json`. Cada ejercicio tiene esta forma:
+Para cambiar un ejercicio, peso sugerido, series, repeticiones o añadir una alternativa nueva, edita `js/exercises-data.js`. Es un objeto JavaScript (`window.EXERCISES_DATA = { ... }`) con la misma estructura que un JSON; cada ejercicio tiene esta forma:
 
-```json
+```js
 {
   "id": "identificador-unico",
   "grupoMuscular": "Pecho",
