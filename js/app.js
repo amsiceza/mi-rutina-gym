@@ -196,6 +196,7 @@
   }
 
   function renderModalContent(){
+    stopTimer(); // evita que un temporizador en marcha siga corriendo contra el DOM anterior
     const ex = activeExercise;
     const idx = getChosenIndex(ex);
     const variant = getVariant(ex, idx);
@@ -234,6 +235,7 @@
     `;
 
     const hasTrainCard = showWeightInput || variant.descansoSeg > 0;
+    if (variant.descansoSeg > 0) initTimerState(variant.descansoSeg);
 
     body.innerHTML = `
       <div class="modal-head">
@@ -294,9 +296,16 @@
         ${variant.descansoSeg > 0 ? `
         <div class="train-item">
           <label>⏱️ Temporizador de descanso</label>
-          <div class="timer-row">
-            <span class="timer-display" id="timer-display">${formatTimer(variant.descansoSeg)}</span>
-            <button type="button" class="timer-btn" id="timer-btn">Iniciar descanso</button>
+          <div class="timer-widget">
+            <div class="timer-ring" id="timer-ring" style="--pct:100">
+              <div class="timer-ring-inner">
+                <span class="timer-display" id="timer-display">${formatTimer(timerRemaining)}</span>
+              </div>
+            </div>
+            <div class="timer-controls">
+              <button type="button" class="timer-btn-main" id="timer-btn" aria-label="Iniciar descanso">▶</button>
+              <button type="button" class="timer-btn-reset" id="timer-reset" aria-label="Reiniciar descanso">↺</button>
+            </div>
           </div>
         </div>` : ""}
       </div>` : ""}
@@ -346,17 +355,23 @@
 
     const timerBtn = $("#timer-btn", body);
     if (timerBtn){
-      timerBtn.addEventListener("click", () => toggleTimer(variant.descansoSeg));
+      timerBtn.addEventListener("click", toggleTimer);
+    }
+    const timerResetBtn = $("#timer-reset", body);
+    if (timerResetBtn){
+      timerResetBtn.addEventListener("click", resetTimer);
     }
   }
 
   // ---------- Temporizador de descanso ----------
   let timerInterval = null;
+  let timerTotal = 0;
+  let timerRemaining = 0;
 
   function formatTimer(sec){
     const m = Math.floor(sec/60);
     const s = sec % 60;
-    return `${String(m).padStart(1,"0")}:${String(s).padStart(2,"0")}`;
+    return `${m}:${String(s).padStart(2,"0")}`;
   }
 
   function stopTimer(){
@@ -366,34 +381,48 @@
     }
   }
 
-  function toggleTimer(totalSec){
+  function initTimerState(totalSec){
+    stopTimer();
+    timerTotal = totalSec;
+    timerRemaining = totalSec;
+  }
+
+  function renderTimerUI(){
+    const ring = $("#timer-ring");
     const display = $("#timer-display");
     const btn = $("#timer-btn");
-    if (!display || !btn) return;
+    if (!ring || !display) return;
+    display.textContent = formatTimer(timerRemaining);
+    const pct = timerTotal > 0 ? (timerRemaining / timerTotal) * 100 : 0;
+    ring.style.setProperty("--pct", pct);
+    if (btn) btn.textContent = timerInterval ? "⏸" : "▶";
+  }
+
+  function toggleTimer(){
     if (timerInterval){
       stopTimer();
-      btn.textContent = "Reanudar";
+      renderTimerUI();
       return;
     }
-    let remaining = parseTimerDisplay(display.textContent, totalSec);
-    btn.textContent = "Pausar";
+    if (timerRemaining <= 0) timerRemaining = timerTotal;
     timerInterval = setInterval(() => {
-      remaining -= 1;
-      if (remaining <= 0){
-        display.textContent = "0:00";
+      timerRemaining -= 1;
+      if (timerRemaining <= 0){
+        timerRemaining = 0;
         stopTimer();
-        btn.textContent = "Reiniciar";
+        renderTimerUI();
         if (navigator.vibrate) navigator.vibrate(200);
         return;
       }
-      display.textContent = formatTimer(remaining);
+      renderTimerUI();
     }, 1000);
+    renderTimerUI();
   }
 
-  function parseTimerDisplay(text, totalSec){
-    if (text === "0:00") return totalSec;
-    const [m, s] = text.split(":").map(Number);
-    return m*60 + s;
+  function resetTimer(){
+    timerRemaining = timerTotal;
+    stopTimer();
+    renderTimerUI();
   }
 
   function closeModal(){

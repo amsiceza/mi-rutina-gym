@@ -236,11 +236,28 @@ dialog.ex-modal .modal-title{font-size:24px; margin:4px 0 14px; padding-right:36
   background:var(--card); color:var(--ink); font-size:16px;
 }
 
-.timer-row{display:flex; align-items:center; gap:12px}
-.timer-display{font-size:22px; font-weight:800; font-family:'Fraunces',serif; min-width:56px}
-.timer-btn{
-  padding:10px 16px; border-radius:10px; border:none; background:var(--accent); color:#fff;
-  font-weight:700; cursor:pointer; min-height:44px;
+.timer-widget{display:flex; align-items:center; gap:18px}
+.timer-ring{
+  --pct:100; width:86px; height:86px; border-radius:50%; flex:none; position:relative;
+  background:conic-gradient(var(--day-accent, var(--accent)) calc(var(--pct) * 1%), var(--line) 0);
+  transition:background .25s linear;
+}
+.timer-ring-inner{
+  position:absolute; inset:7px; border-radius:50%; background:var(--card);
+  display:flex; align-items:center; justify-content:center;
+}
+.timer-display{font-size:17px; font-weight:800; font-family:'Fraunces',serif; color:var(--ink)}
+.timer-controls{display:flex; align-items:center; gap:10px}
+.timer-btn-main{
+  all:unset; box-sizing:border-box; width:52px; height:52px; border-radius:50%; cursor:pointer;
+  background:var(--day-accent, var(--accent)); color:#fff; font-size:17px;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 6px 16px -6px var(--day-accent, var(--accent));
+}
+.timer-btn-reset{
+  all:unset; box-sizing:border-box; width:40px; height:40px; border-radius:50%; cursor:pointer;
+  background:var(--card); color:var(--soft); font-size:15px; border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
 }
 
 @media (max-width:360px){
