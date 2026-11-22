@@ -188,8 +188,11 @@
   // ---------- Modal ----------
   function openModal(exercise){
     activeExercise = exercise;
-    renderModalContent();
+    // El modal debe estar abierto (showModal) antes de medir anchos para el
+    // carrusel de alternativas: un <dialog> cerrado no tiene layout y todas
+    // las medidas (clientWidth/scrollWidth) saldrían a 0.
     $("#exercise-modal").showModal();
+    renderModalContent();
   }
 
   function renderModalContent(){
@@ -205,6 +208,7 @@
     const altTabs = altOptions.map(opt => `
       <button type="button" class="alt-tab" role="tab" data-idx="${opt.idx}" aria-selected="${idx===opt.idx}">${escapeHtml(opt.nombre)}</button>
     `).join("");
+    const altDots = altOptions.map(opt => `<span class="alt-dot${idx===opt.idx ? " is-active" : ""}" data-idx="${opt.idx}"></span>`).join("");
 
     const weightKey = LS_WEIGHT_PREFIX + (variant.id || ex.id);
     const savedWeight = localStorage.getItem(weightKey) || "";
@@ -238,7 +242,12 @@
       </div>
 
       ${altOptions.length > 1 ? `
-      <div class="alt-tabs" role="tablist" aria-label="Elegir ejercicio">${altTabs}</div>
+      <div class="alt-slider">
+        <button type="button" class="alt-nav alt-nav-prev" aria-label="Ver alternativa anterior">&#8249;</button>
+        <div class="alt-tabs" role="tablist" aria-label="Elegir ejercicio" id="alt-tabs-track">${altTabs}</div>
+        <button type="button" class="alt-nav alt-nav-next" aria-label="Ver siguiente alternativa">&#8250;</button>
+      </div>
+      <div class="alt-dots">${altDots}</div>
       ` : ""}
 
       <h2 class="modal-title">${escapeHtml(variant.nombre)}</h2>
@@ -311,13 +320,35 @@
       });
     });
 
+    const selectAlt = (newIdx) => {
+      setChosenIndex(ex, newIdx);
+      renderModalContent();
+      renderExerciseGrid();
+    };
     $$(".alt-tab", body).forEach(chip => {
-      chip.addEventListener("click", () => {
-        setChosenIndex(ex, parseInt(chip.dataset.idx, 10));
-        renderModalContent();
-        renderExerciseGrid();
-      });
+      chip.addEventListener("click", () => selectAlt(parseInt(chip.dataset.idx, 10)));
     });
+    $$(".alt-dot", body).forEach(dot => {
+      dot.addEventListener("click", () => selectAlt(parseInt(dot.dataset.idx, 10)));
+    });
+
+    const track = $("#alt-tabs-track", body);
+    if (track){
+      const prevBtn = $(".alt-nav-prev", body);
+      const nextBtn = $(".alt-nav-next", body);
+      const updateNav = () => {
+        const max = track.scrollWidth - track.clientWidth;
+        prevBtn.hidden = track.scrollLeft <= 4;
+        nextBtn.hidden = track.scrollLeft >= max - 4;
+      };
+      prevBtn.addEventListener("click", () => track.scrollBy({ left: -track.clientWidth * 0.8, behavior: "smooth" }));
+      nextBtn.addEventListener("click", () => track.scrollBy({ left: track.clientWidth * 0.8, behavior: "smooth" }));
+      track.addEventListener("scroll", updateNav);
+
+      const activeTab = track.querySelector('.alt-tab[aria-selected="true"]');
+      if (activeTab) track.scrollLeft = Math.max(0, activeTab.offsetLeft - 14);
+      updateNav();
+    }
 
     const weightInput = $("#weight-input", body);
     if (weightInput){
