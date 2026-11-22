@@ -5,14 +5,12 @@
   --line:#DCD3C3; --accent:#D9654A; --accent2:#2F7D6E; --accent3:#B45309; --card:#FFFFFF;
   --fig-bg:#EAE2D4; --fig-cap:#4C6560; --fig-ink:#12302B; --done-bg:#E3F1EC;
   --dia1:var(--accent); --dia2:var(--accent2); --dia3:var(--accent3);
-  --carousel-accent:#6B5CA5;
 }
 @media (prefers-color-scheme: dark){
   :root{
     --ink:#EDE6DA; --soft:#A9BDB6; --paper:#0E2622; --paper2:#15332E;
     --line:#24463F; --accent:#E8846C; --accent2:#6FB7A6; --accent3:#D97706; --card:#15332E;
     --fig-bg:#15332E; --fig-cap:#A9BDB6; --fig-ink:#EDE6DA; --done-bg:#1B4A40;
-    --carousel-accent:#B6A7E0;
   }
 }
 
@@ -221,15 +219,15 @@ dialog.ex-modal .modal-title{font-size:24px; margin:4px 0 14px; padding-right:36
 .alt-tab{
   all:unset; box-sizing:border-box; flex:0 0 auto; width:min(68vw, 230px);
   scroll-snap-align:start;
-  padding:13px 16px; border-radius:14px; cursor:pointer;
+  padding:13px 16px; border-radius:999px; cursor:pointer;
   font-size:13.5px; font-weight:700; line-height:1.3; text-align:center;
-  background:var(--paper2); color:var(--soft); border:2px solid transparent;
+  background:var(--paper2); color:var(--soft);
 }
-.alt-tab[aria-selected="true"]{background:var(--card); color:var(--carousel-accent); border-color:var(--carousel-accent)}
+.alt-tab[aria-selected="true"]{background:var(--day-accent, var(--accent)); color:#fff}
 
 .alt-dots{display:flex; justify-content:center; gap:6px; margin:2px 0 14px}
 .alt-dot{width:6px; height:6px; border-radius:3px; background:var(--line); cursor:pointer}
-.alt-dot.is-active{width:18px; background:var(--carousel-accent)}
+.alt-dot.is-active{width:18px; background:var(--day-accent, var(--accent))}
 
 .weight-row{display:flex; align-items:center; gap:10px}
 .weight-row label{font-size:14px; font-weight:700; color:var(--soft)}
