@@ -26,6 +26,8 @@ Todo se guarda únicamente en el `localStorage` de tu navegador: no hay servidor
 
 Abre `index.html` directamente con doble clic, sin necesidad de servidor ni instalar nada: los datos están embebidos en `js/exercises-data.js`, así que funciona tal cual con doble clic.
 
+Única excepción: los **vídeos incrustados** de YouTube no se reproducen abriendo el archivo con doble clic (`file://`) — YouTube los bloquea con un "Error 153" porque esa página no tiene un dominio real que enviar como referer. Esto es una limitación de YouTube, no de la app: funcionan perfectamente una vez publicada en GitHub Pages (o cualquier servidor `http(s)`, incluido uno local con `python3 -m http.server`).
+
 ## Publicar en GitHub Pages
 
 1. Sube esta carpeta a un repositorio de GitHub.
