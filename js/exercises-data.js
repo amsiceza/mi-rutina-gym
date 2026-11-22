@@ -35,7 +35,7 @@ window.EXERCISES_DATA = {
     },
     {
       "titulo": "Descanso entre sesiones",
-      "texto": "Deja al menos 48 horas entre sesiones (por eso lunes/miércoles/viernes funciona bien) para que músculos y articulaciones se recuperen correctamente a los 60 años."
+      "texto": "Deja al menos 48 horas entre sesiones (por eso lunes/miércoles/viernes funciona bien) para que músculos y articulaciones se recuperen bien."
     },
     {
       "titulo": "Proteína y descanso nocturno",
@@ -903,7 +903,7 @@ window.EXERCISES_DATA = {
               "series": 3,
               "repeticiones": "10-12",
               "descansoSeg": 100,
-              "pesoSugerido": "Sujeta una mancuerna de 4-8 kg contra el pecho; es una variante muy amigable para la zona lumbar a los 60 años.",
+              "pesoSugerido": "Sujeta una mancuerna de 4-8 kg contra el pecho; es una variante muy amigable para la zona lumbar.",
               "notas": "Codos apuntando hacia las rodillas al bajar, como guía natural de profundidad."
             },
             {
@@ -966,7 +966,7 @@ window.EXERCISES_DATA = {
               "series": 3,
               "repeticiones": "10-12",
               "descansoSeg": 100,
-              "pesoSugerido": "Sujeta una mancuerna de 4-8 kg contra el pecho; es una variante muy amigable para la zona lumbar a los 60 años.",
+              "pesoSugerido": "Sujeta una mancuerna de 4-8 kg contra el pecho; es una variante muy amigable para la zona lumbar.",
               "notas": "Codos apuntando hacia las rodillas al bajar, como guía natural de profundidad."
             }
           ]
@@ -989,7 +989,7 @@ window.EXERCISES_DATA = {
               "series": 3,
               "repeticiones": "10-12",
               "descansoSeg": 100,
-              "pesoSugerido": "Sujeta una mancuerna de 4-8 kg contra el pecho; es una variante muy amigable para la zona lumbar a los 60 años.",
+              "pesoSugerido": "Sujeta una mancuerna de 4-8 kg contra el pecho; es una variante muy amigable para la zona lumbar.",
               "notas": "Codos apuntando hacia las rodillas al bajar, como guía natural de profundidad."
             },
             {
