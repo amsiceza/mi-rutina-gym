@@ -1,6 +1,6 @@
 # Mi Rutina de Fuerza
 
-Web de una sola página (sin backend, sin build), pensada **mobile-first** para consultarse desde el móvil durante el entrenamiento, para seguir una rutina de **3 días a la semana** enfocada en ganar masa muscular, entrenando en casa con: barra, mancuernas, máquina de press de banca y máquina multifuncional (aperturas + polea).
+Web de una sola página (sin backend, sin build), pensada **mobile-first** para consultarse desde el móvil durante el entrenamiento, para seguir una rutina de **3 días a la semana** enfocada en ganar masa muscular, entrenando en casa con: barra, mancuernas y máquina de press de banca (sin polea/cable).
 
 - **Día 1** — Pecho, tríceps y abdominales
 - **Día 2** — Hombros, bíceps + aeróbico
