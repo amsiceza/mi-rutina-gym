@@ -151,7 +151,6 @@
     const photo = imgFile
       ? `<img src="img/exercises/${imgFile}" alt="${escapeHtml(variant.nombre)}" loading="lazy">`
       : "";
-    const altBadge = idx > 0 ? `<span class="alt-badge">🔄 alt.</span>` : "";
 
     tile.innerHTML = `
       <button type="button" class="tile-open">
@@ -160,7 +159,6 @@
           <span class="tile-n">${String(n).padStart(2, "0")}</span>
           <div class="tile-text">
             <h3>${escapeHtml(variant.nombre)}</h3>
-            ${altBadge}
           </div>
         </div>
       </button>
