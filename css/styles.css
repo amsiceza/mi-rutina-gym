@@ -116,8 +116,14 @@ dialog.ex-modal{
 }
 dialog.ex-modal::backdrop{background:rgba(8,18,16,.6)}
 dialog.ex-modal .modal-inner{padding:26px 22px 22px; overflow:auto; max-height:85vh}
-dialog.ex-modal .modal-group{font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:var(--accent); padding-right:36px}
-dialog.ex-modal .modal-title{font-size:23px; margin:2px 0 14px; padding-right:36px}
+dialog.ex-modal .modal-head{display:flex; align-items:center; gap:8px; padding-right:36px}
+dialog.ex-modal .modal-group{font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:var(--day-accent, var(--accent))}
+dialog.ex-modal .modal-title{font-size:24px; margin:4px 0 14px; padding-right:36px}
+.modal-accent-bar{
+  position:absolute; top:0; left:0; right:0; height:6px;
+  background:var(--day-accent, var(--accent)); border-radius:22px 22px 0 0;
+}
+@media (max-width:640px){ .modal-accent-bar{border-radius:0} }
 .close-x{
   all:unset; box-sizing:border-box; position:absolute; top:14px; right:14px; z-index:2;
   width:36px; height:36px; border-radius:50%; cursor:pointer; background:var(--paper2);
@@ -139,19 +145,44 @@ dialog.ex-modal .modal-title{font-size:23px; margin:2px 0 14px; padding-right:36
   }
 }
 
-.fig{background:var(--fig-bg); border-radius:16px; overflow:hidden; margin-bottom:14px}
+.fig{
+  background:var(--fig-bg); border-radius:18px; overflow:hidden; margin-bottom:16px;
+  position:relative; box-shadow:0 10px 28px -14px var(--day-accent, var(--accent));
+}
 .fig img{width:100%; height:auto; max-height:280px; object-fit:cover; display:block}
+.fig-badge{
+  position:absolute; top:10px; left:10px; width:38px; height:38px; border-radius:50%;
+  background:var(--day-accent, var(--accent)); color:#fff; font-size:18px;
+  display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,.25);
+}
 
-.pills{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px}
-.pill{font-size:13px; font-weight:700; background:var(--ink); color:var(--paper); padding:8px 15px; border-radius:999px}
-.pill.soft{background:var(--paper2); color:var(--ink)}
-.pill small{display:block; font-weight:600; opacity:.75; font-size:10px; text-transform:uppercase; letter-spacing:.03em}
+/* Estadísticas clave como tarjetas grandes */
+.stat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:16px}
+.stat-card{
+  background:var(--paper2); border-radius:14px; padding:12px 6px;
+  display:flex; flex-direction:column; align-items:center; gap:4px; text-align:center;
+}
+.stat-icon{font-size:19px}
+.stat-value{font-size:14px; font-weight:800; color:var(--ink); line-height:1.25}
+.stat-label{font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--soft)}
 
-.modal-section{margin-bottom:14px}
-.modal-section h4{font-size:13px; text-transform:uppercase; color:var(--soft); margin-bottom:6px; letter-spacing:.03em}
-.feel{font-size:15px; color:var(--soft); border-left:3px solid var(--accent); padding-left:13px; margin:0 0 14px}
-.tip{font-size:14px; color:var(--soft); background:var(--paper2); border-radius:12px; padding:12px 14px; margin:0 0 14px}
-.tip b{color:var(--ink)}
+/* Tarjetas de consejo (peso, técnica) con icono */
+.info-card{
+  display:flex; gap:12px; padding:14px; border-radius:16px; background:var(--paper2); margin-bottom:12px;
+}
+.info-card .info-ico{
+  flex:none; width:36px; height:36px; border-radius:50%; background:var(--day-accent, var(--accent));
+  color:#fff; font-size:16px; display:flex; align-items:center; justify-content:center;
+}
+.info-card strong{display:block; font-size:13px; margin-bottom:4px; color:var(--ink)}
+.info-card p{margin:0; font-size:14.5px; color:var(--soft); line-height:1.45}
+
+/* Tarjeta de "mientras entrenas": peso + temporizador */
+.train-card{
+  background:var(--paper2); border-radius:16px; padding:16px; margin-bottom:8px;
+  display:flex; flex-direction:column; gap:16px;
+}
+.train-item label{display:block; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:var(--soft); margin-bottom:8px}
 
 /* Vídeo incrustado, carga diferida */
 .vid{margin-bottom:16px; border-radius:14px; overflow:hidden; background:var(--fig-bg)}

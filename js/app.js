@@ -197,6 +197,9 @@
     const idx = getChosenIndex(ex);
     const variant = getVariant(ex, idx);
     const body = $("#modal-body");
+    const dia = DATA.dias.find(d => d.id === currentDayId);
+
+    $("#exercise-modal").style.setProperty("--day-accent", `var(--${dia.colorTag})`);
 
     const altOptions = [{ idx: 0, nombre: ex.nombre }, ...(ex.alternativas || []).map((alt, i) => ({ idx: i+1, nombre: alt.nombre }))];
     const altTabs = altOptions.map(opt => `
@@ -226,44 +229,69 @@
       </a>
     `;
 
+    const hasTrainCard = showWeightInput || variant.descansoSeg > 0;
+
     body.innerHTML = `
-      <div class="modal-group">${escapeHtml(ex.grupoMuscular)}</div>
+      <div class="modal-head">
+        <span>${dia.icono}</span>
+        <div class="modal-group">${escapeHtml(ex.grupoMuscular)}</div>
+      </div>
 
       ${altOptions.length > 1 ? `
       <div class="alt-tabs" role="tablist" aria-label="Elegir ejercicio">${altTabs}</div>
       ` : ""}
 
       <h2 class="modal-title">${escapeHtml(variant.nombre)}</h2>
-      ${photo ? `<div class="fig">${photo}</div>` : ""}
+      ${photo ? `<div class="fig"><span class="fig-badge">${dia.icono}</span>${photo}</div>` : ""}
 
       ${videoBlock}
 
-      <div class="pills">
-        <span class="pill soft"><small>Equipo</small>${escapeHtml(variant.equipo)}</span>
-        <span class="pill soft"><small>Series × reps</small>${variant.series}×${escapeHtml(String(variant.repeticiones))}</span>
-        <span class="pill soft"><small>Descanso</small>${formatRest(variant.descansoSeg)}</span>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span class="stat-icon">🔁</span>
+          <span class="stat-value">${variant.series}×${escapeHtml(String(variant.repeticiones))}</span>
+          <span class="stat-label">Series × reps</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">⏱️</span>
+          <span class="stat-value">${formatRest(variant.descansoSeg)}</span>
+          <span class="stat-label">Descanso</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">🏋️</span>
+          <span class="stat-value">${escapeHtml(variant.equipo)}</span>
+          <span class="stat-label">Equipo</span>
+        </div>
       </div>
 
-      <p class="tip"><b>💡 Peso recomendado:</b> ${escapeHtml(variant.pesoSugerido)}</p>
-      <p class="feel"><b>⚠️ Técnica y cuidado articular:</b> ${escapeHtml(variant.notas)}</p>
+      <div class="info-card">
+        <span class="info-ico">💡</span>
+        <div><strong>Peso recomendado</strong><p>${escapeHtml(variant.pesoSugerido)}</p></div>
+      </div>
+      <div class="info-card">
+        <span class="info-ico">⚠️</span>
+        <div><strong>Técnica y cuidado articular</strong><p>${escapeHtml(variant.notas)}</p></div>
+      </div>
 
-      ${showWeightInput ? `
-      <div class="modal-section">
-        <h4>🏷️ Registro rápido</h4>
-        <div class="weight-row">
-          <label for="weight-input">Peso usado hoy</label>
-          <input type="number" id="weight-input" inputmode="decimal" step="0.5" min="0" placeholder="kg" value="${escapeHtml(savedWeight)}">
-          <span>kg</span>
-        </div>
-      </div>` : ""}
+      ${hasTrainCard ? `
+      <div class="train-card">
+        ${showWeightInput ? `
+        <div class="train-item">
+          <label for="weight-input">🏷️ Peso usado hoy</label>
+          <div class="weight-row">
+            <input type="number" id="weight-input" inputmode="decimal" step="0.5" min="0" placeholder="kg" value="${escapeHtml(savedWeight)}">
+            <span>kg</span>
+          </div>
+        </div>` : ""}
 
-      ${variant.descansoSeg > 0 ? `
-      <div class="modal-section">
-        <h4>⏱️ Temporizador de descanso</h4>
-        <div class="timer-row">
-          <span class="timer-display" id="timer-display">${formatTimer(variant.descansoSeg)}</span>
-          <button type="button" class="timer-btn" id="timer-btn">Iniciar descanso</button>
-        </div>
+        ${variant.descansoSeg > 0 ? `
+        <div class="train-item">
+          <label>⏱️ Temporizador de descanso</label>
+          <div class="timer-row">
+            <span class="timer-display" id="timer-display">${formatTimer(variant.descansoSeg)}</span>
+            <button type="button" class="timer-btn" id="timer-btn">Iniciar descanso</button>
+          </div>
+        </div>` : ""}
       </div>` : ""}
     `;
 
