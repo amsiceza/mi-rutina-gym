@@ -117,9 +117,9 @@ dialog.ex-modal{
 }
 dialog.ex-modal::backdrop{background:rgba(8,18,16,.6)}
 dialog.ex-modal .modal-inner{padding:26px 22px 22px; overflow:auto; max-height:85vh}
-dialog.ex-modal .modal-head{display:flex; align-items:center; gap:8px; padding-right:36px}
+dialog.ex-modal .modal-head{display:flex; align-items:center; gap:8px; padding-right:36px; margin-bottom:16px}
 dialog.ex-modal .modal-group{font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:var(--day-accent, var(--accent))}
-dialog.ex-modal .modal-title{font-size:24px; margin:4px 0 14px; padding-right:36px}
+dialog.ex-modal .modal-title{font-size:24px; margin:8px 0 16px; padding-right:36px}
 .modal-accent-bar{
   position:absolute; top:0; left:0; right:0; height:6px;
   background:var(--day-accent, var(--accent)); border-radius:22px 22px 0 0;
@@ -226,7 +226,7 @@ dialog.ex-modal .modal-title{font-size:24px; margin:4px 0 14px; padding-right:36
 }
 .alt-tab[aria-selected="true"]{background:var(--day-accent, var(--accent)); color:#fff}
 
-.alt-dots{display:flex; justify-content:center; gap:6px; margin:2px 0 14px}
+.alt-dots{display:flex; justify-content:center; gap:6px; margin:6px 0 18px}
 .alt-dot{width:6px; height:6px; border-radius:3px; background:var(--line); cursor:pointer}
 .alt-dot.is-active{width:18px; background:var(--day-accent, var(--accent))}
 
