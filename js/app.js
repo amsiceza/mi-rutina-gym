@@ -199,11 +199,8 @@
     const body = $("#modal-body");
 
     const altOptions = [{ idx: 0, nombre: ex.nombre }, ...(ex.alternativas || []).map((alt, i) => ({ idx: i+1, nombre: alt.nombre }))];
-    const altRows = altOptions.map(opt => `
-      <button type="button" class="alt-option" data-idx="${opt.idx}" aria-pressed="${idx===opt.idx}">
-        <span class="alt-radio"></span>
-        <span>${escapeHtml(opt.nombre)}</span>
-      </button>
+    const altTabs = altOptions.map(opt => `
+      <button type="button" class="alt-tab" role="tab" data-idx="${opt.idx}" aria-selected="${idx===opt.idx}">${escapeHtml(opt.nombre)}</button>
     `).join("");
 
     const weightKey = LS_WEIGHT_PREFIX + (variant.id || ex.id);
@@ -231,14 +228,13 @@
 
     body.innerHTML = `
       <div class="modal-group">${escapeHtml(ex.grupoMuscular)}</div>
-      <h2 class="modal-title">${escapeHtml(variant.nombre)}</h2>
-      ${photo ? `<div class="fig">${photo}</div>` : ""}
 
       ${altOptions.length > 1 ? `
-      <div class="alt-section">
-        <h4>🔄 Elige qué vas a hacer hoy</h4>
-        <div class="alt-list">${altRows}</div>
-      </div>` : ""}
+      <div class="alt-tabs" role="tablist" aria-label="Elegir ejercicio">${altTabs}</div>
+      ` : ""}
+
+      <h2 class="modal-title">${escapeHtml(variant.nombre)}</h2>
+      ${photo ? `<div class="fig">${photo}</div>` : ""}
 
       ${videoBlock}
 
@@ -287,7 +283,7 @@
       });
     });
 
-    $$(".alt-option", body).forEach(chip => {
+    $$(".alt-tab", body).forEach(chip => {
       chip.addEventListener("click", () => {
         setChosenIndex(ex, parseInt(chip.dataset.idx, 10));
         renderModalContent();
