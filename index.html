@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mi Rutina de Fuerza</title>
+<meta name="description" content="Rutina de 3 días para ganar masa muscular en casa, con pesos, series, descansos y ejercicios alternativos.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏋️</text></svg>">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-inner">
+    <h1>Mi Rutina de Fuerza</h1>
+    <p class="subtitle">3 días · Hipertrofia · Entrenamiento en casa</p>
+  </div>
+  <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Cambiar modo claro/oscuro">
+    <span class="theme-icon">🌙</span>
+  </button>
+</header>
+
+<main class="container">
+
+  <section class="panel-collapsible" id="panel-recs">
+    <button type="button" class="panel-toggle" id="recs-toggle" aria-expanded="false">
+      <span>📋 Recomendaciones para entrenar a los 60</span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="panel-body" id="recs-body" hidden>
+      <div id="recs-list" class="recs-list"></div>
+    </div>
+  </section>
+
+  <nav class="day-tabs" id="day-tabs" aria-label="Selecciona el día de entrenamiento"></nav>
+
+  <section class="day-progress" id="day-progress"></section>
+
+  <section class="exercise-grid" id="exercise-grid"></section>
+
+</main>
+
+<footer class="app-footer">
+  <p>⚠️ Esta rutina es una guía general. Ante cualquier dolor articular o duda, consulta con tu médico o fisioterapeuta.</p>
+</footer>
+
+<dialog class="ex-modal" id="exercise-modal">
+  <button type="button" class="close-x" id="modal-close" aria-label="Cerrar">&#10005;</button>
+  <div id="modal-body"></div>
+</dialog>
+
+<script src="js/app.js"></script>
+</body>
+</html>
