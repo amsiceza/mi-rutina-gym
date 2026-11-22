@@ -1,6 +1,6 @@
 # Mi Rutina de Fuerza
 
-Web de una sola página (sin backend, sin build) para seguir una rutina de **3 días a la semana** enfocada en ganar masa muscular, entrenando en casa con: barra, mancuernas, máquina de press de banca y máquina multifuncional (aperturas + polea).
+Web de una sola página (sin backend, sin build), pensada **mobile-first** para consultarse desde el móvil durante el entrenamiento, para seguir una rutina de **3 días a la semana** enfocada en ganar masa muscular, entrenando en casa con: barra, mancuernas, máquina de press de banca y máquina multifuncional (aperturas + polea).
 
 - **Día 1** — Pecho, tríceps y abdominales
 - **Día 2** — Hombros, bíceps + aeróbico
@@ -10,6 +10,9 @@ Todos los ejercicios, pesos sugeridos, series, repeticiones y descansos están e
 
 ## Qué incluye
 
+- Diseño mobile-first: pantallas táctiles grandes, modal del ejercicio a pantalla completa en el móvil
+- Ilustración (pictograma) de la postura de cada uno de los 51 ejercicios y alternativas, dibujada en SVG (ligera, nítida, sin fotos que descargar)
+- Botón "Ver vídeos de este ejercicio en YouTube" en cada ejercicio: abre una búsqueda de YouTube con el nombre exacto del ejercicio (no enlaza a un vídeo concreto, para no depender de que siga existiendo)
 - Recomendaciones generales pensadas para entrenar con seguridad a los 60 años (calentamiento, cómo elegir el peso con la escala RIR, progresión, cuidado articular, descanso entre sesiones)
 - Cada ejercicio trae **2-3 alternativas** por si un día apetece cambiarlo (se recuerda tu elección)
 - Peso sugerido y notas de técnica por ejercicio
@@ -48,9 +51,12 @@ Para cambiar un ejercicio, peso sugerido, series, repeticiones o añadir una alt
   "descansoSeg": 90,
   "pesoSugerido": "Consejo de peso",
   "notas": "Consejo de técnica/seguridad",
+  "ilustracion": "clave-de-pose",
   "alternativas": [ /* mismos campos, sin "alternativas" dentro */ ]
 }
 ```
+
+`ilustracion` debe ser una de las claves definidas en [`js/illustrations.js`](js/illustrations.js) (por ejemplo `"sentadilla"`, `"curl-biceps"`, `"plancha-frontal"`...). Si pones una clave que no existe, se usa un pictograma genérico de respaldo.
 
 ## Aviso
 

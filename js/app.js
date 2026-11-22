@@ -169,9 +169,10 @@
     card.dataset.exerciseId = ex.id;
 
     const altBadge = idx > 0 ? `<span class="alt-mark">🔄 alternativa</span>` : "";
+    const illustration = window.ExerciseIllustrations.buildSVG(variant.ilustracion, { size: 36 });
 
     card.innerHTML = `
-      <span class="ex-dot ${colorTag}"></span>
+      <span class="ex-illustration ${colorTag}">${illustration}</span>
       <button type="button" class="ex-open">
         <span class="ex-info">
           <h3>${escapeHtml(variant.nombre)}</h3>
@@ -230,9 +231,20 @@
     const savedWeight = localStorage.getItem(weightKey) || "";
     const showWeightInput = !/sin material|peso corporal/i.test(variant.equipo || "");
 
+    const dia = DATA.dias.find(d => d.id === currentDayId);
+    const illustration = window.ExerciseIllustrations.buildSVG(variant.ilustracion, { size: 120, strokeWidth: 6 });
+    const videoUrl = "https://www.youtube.com/results?search_query=" + encodeURIComponent(variant.nombre + " ejercicio técnica correcta");
+
     body.innerHTML = `
+      <div class="modal-illustration" style="background:var(--${dia.colorTag}-soft); color:var(--${dia.colorTag})">${illustration}</div>
       <div class="modal-group">${escapeHtml(ex.grupoMuscular)}</div>
       <h2 class="modal-title">${escapeHtml(variant.nombre)}</h2>
+
+      <a class="video-btn" href="${videoUrl}" target="_blank" rel="noopener noreferrer">
+        <span class="play-ico">▶</span>
+        <span>Ver vídeos de este ejercicio en YouTube</span>
+      </a>
+
       <div class="modal-stats">
         <div class="stat-chip"><small>Equipo</small>${escapeHtml(variant.equipo)}</div>
         <div class="stat-chip"><small>Series</small>${variant.series}</div>
