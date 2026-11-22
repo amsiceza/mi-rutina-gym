@@ -4,23 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mi Rutina de Fuerza</title>
-<meta name="description" content="Rutina de 3 días para ganar masa muscular en casa, con pesos, series, descansos y ejercicios alternativos.">
+<meta name="description" content="Rutina de 3 días para ganar masa muscular en casa, con pesos, series, descansos, ilustraciones y vídeos por ejercicio.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏋️</text></svg>">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
 <header class="app-header">
-  <div class="header-inner">
-    <h1>Mi Rutina de Fuerza</h1>
-    <p class="subtitle">3 días · Hipertrofia · Entrenamiento en casa</p>
-  </div>
-  <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Cambiar modo claro/oscuro">
-    <span class="theme-icon">🌙</span>
-  </button>
+  <h1>Mi Rutina de Fuerza</h1>
+  <p class="subtitle">3 días · Hipertrofia · Entrenamiento en casa</p>
 </header>
 
-<main class="container">
+<main class="wrap">
 
   <section class="panel-collapsible" id="panel-recs">
     <button type="button" class="panel-toggle" id="recs-toggle" aria-expanded="false">
@@ -36,7 +31,7 @@
 
   <section class="day-progress" id="day-progress"></section>
 
-  <section class="exercise-grid" id="exercise-grid"></section>
+  <section class="tile-grid" id="exercise-grid"></section>
 
 </main>
 
@@ -46,11 +41,12 @@
 
 <dialog class="ex-modal" id="exercise-modal">
   <button type="button" class="close-x" id="modal-close" aria-label="Cerrar">&#10005;</button>
-  <div id="modal-body"></div>
+  <div class="modal-inner" id="modal-body"></div>
 </dialog>
 
 <script src="js/exercises-data.js"></script>
 <script src="js/illustrations.js"></script>
+<script src="js/videos.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

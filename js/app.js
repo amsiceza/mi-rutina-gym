@@ -1,7 +1,6 @@
 (function(){
   "use strict";
 
-  const LS_THEME = "rutina-theme";
   const LS_DAY = "rutina-dia-actual";
   const LS_ALT_PREFIX = "rutina-alt-";      // + exerciseId -> índice alternativa elegida (0 = principal)
   const LS_WEIGHT_PREFIX = "rutina-peso-";  // + variantId -> último peso anotado
@@ -10,7 +9,6 @@
   let DATA = null;
   let currentDayId = null;
   let activeExercise = null; // ejercicio base actualmente abierto en el modal
-  let timerInterval = null;
 
   const $ = (sel, root) => (root || document).querySelector(sel);
   const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
@@ -18,26 +16,6 @@
   function todayKey(){
     const d = new Date();
     return d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
-  }
-
-  // ---------- Tema ----------
-  function initTheme(){
-    const saved = localStorage.getItem(LS_THEME);
-    if (saved) document.documentElement.setAttribute("data-theme", saved);
-    updateThemeIcon();
-    $("#theme-toggle").addEventListener("click", () => {
-      const current = document.documentElement.getAttribute("data-theme") ||
-        (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-      const next = current === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", next);
-      localStorage.setItem(LS_THEME, next);
-      updateThemeIcon();
-    });
-  }
-  function updateThemeIcon(){
-    const current = document.documentElement.getAttribute("data-theme") ||
-      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    $(".theme-icon").textContent = current === "dark" ? "☀️" : "🌙";
   }
 
   // ---------- Carga de datos ----------
@@ -141,13 +119,13 @@
     return exercise.alternativas[idx - 1];
   }
 
-  // ---------- Grid de ejercicios ----------
+  // ---------- Grid de fichas ----------
   function renderExerciseGrid(){
     const dia = DATA.dias.find(d => d.id === currentDayId);
     const grid = $("#exercise-grid");
     grid.innerHTML = "";
     let lastGroup = null;
-    dia.ejercicios.forEach(ex => {
+    dia.ejercicios.forEach((ex, i) => {
       if (ex.grupoMuscular !== lastGroup){
         const h = document.createElement("div");
         h.className = "ex-group-title";
@@ -155,47 +133,43 @@
         grid.appendChild(h);
         lastGroup = ex.grupoMuscular;
       }
-      grid.appendChild(renderExerciseCard(ex, dia.colorTag));
+      grid.appendChild(renderExerciseTile(ex, i + 1));
     });
   }
 
-  function renderExerciseCard(ex, colorTag){
+  function renderExerciseTile(ex, n){
     const idx = getChosenIndex(ex);
     const variant = getVariant(ex, idx);
     const done = isDone(ex.id);
 
-    const card = document.createElement("div");
-    card.className = "ex-card" + (done ? " is-done" : "");
-    card.dataset.exerciseId = ex.id;
+    const tile = document.createElement("div");
+    tile.className = "ex-tile" + (done ? " is-done" : "");
 
-    const altBadge = idx > 0 ? `<span class="alt-mark">🔄 alternativa</span>` : "";
-    const illustration = window.ExerciseIllustrations.buildSVG(variant.ilustracion, { size: 36 });
+    const illustration = window.ExerciseIllustrations.buildSVG(variant.ilustracion);
+    const altBadge = idx > 0 ? `<span class="alt-badge">🔄 alt.</span>` : "";
 
-    card.innerHTML = `
-      <span class="ex-illustration ${colorTag}">${illustration}</span>
-      <button type="button" class="ex-open">
-        <span class="ex-info">
+    tile.innerHTML = `
+      <button type="button" class="tile-open">
+        <div class="tile-fig">${altBadge}${illustration}</div>
+        <div class="tile-head">
+          <span class="tile-n">${String(n).padStart(2, "0")}</span>
           <h3>${escapeHtml(variant.nombre)}</h3>
-          <span class="ex-meta">
-            <span>${variant.series}×${escapeHtml(String(variant.repeticiones))}</span>
-            <span>·</span>
-            <span>${formatRest(variant.descansoSeg)}</span>
-            ${altBadge ? `<span>·</span>${altBadge}` : ""}
-          </span>
-        </span>
+        </div>
       </button>
-      <button type="button" class="ex-check" aria-label="Marcar como hecho" aria-pressed="${done}">✓</button>
+      <label class="tile-check">
+        <input type="checkbox" ${done ? "checked" : ""}>
+        <span class="check-ico">✓</span>
+      </label>
     `;
 
-    $(".ex-open", card).addEventListener("click", () => openModal(ex));
-    $(".ex-check", card).addEventListener("click", () => {
-      const nowDone = !isDone(ex.id);
-      setDone(ex.id, nowDone);
-      renderExerciseGrid();
+    $(".tile-open", tile).addEventListener("click", () => openModal(ex));
+    $("input", tile).addEventListener("change", (e) => {
+      setDone(ex.id, e.target.checked);
+      tile.classList.toggle("is-done", e.target.checked);
       renderDayProgress();
     });
 
-    return card;
+    return tile;
   }
 
   function formatRest(sec){
@@ -203,15 +177,14 @@
     if (sec >= 60) {
       const min = Math.floor(sec/60);
       const rest = sec % 60;
-      return rest ? `descanso ${min}m ${rest}s` : `descanso ${min} min`;
+      return rest ? `${min}m ${rest}s` : `${min} min`;
     }
-    return `descanso ${sec}s`;
+    return `${sec}s`;
   }
 
   // ---------- Modal ----------
   function openModal(exercise){
     activeExercise = exercise;
-    stopTimer();
     renderModalContent();
     $("#exercise-modal").showModal();
   }
@@ -222,45 +195,45 @@
     const variant = getVariant(ex, idx);
     const body = $("#modal-body");
 
-    const altChips = [`<button type="button" class="alt-chip" data-idx="0" aria-pressed="${idx===0}">Principal</button>`];
+    const altChips = [`<button type="button" class="alt-pill" data-idx="0" aria-pressed="${idx===0}">Principal</button>`];
     (ex.alternativas || []).forEach((alt, i) => {
-      altChips.push(`<button type="button" class="alt-chip" data-idx="${i+1}" aria-pressed="${idx===i+1}">Opción ${i+2}</button>`);
+      altChips.push(`<button type="button" class="alt-pill" data-idx="${i+1}" aria-pressed="${idx===i+1}">Opción ${i+2}</button>`);
     });
 
     const weightKey = LS_WEIGHT_PREFIX + (variant.id || ex.id);
     const savedWeight = localStorage.getItem(weightKey) || "";
     const showWeightInput = !/sin material|peso corporal/i.test(variant.equipo || "");
 
-    const dia = DATA.dias.find(d => d.id === currentDayId);
-    const illustration = window.ExerciseIllustrations.buildSVG(variant.ilustracion, { size: 120, strokeWidth: 6 });
-    const videoUrl = "https://www.youtube.com/results?search_query=" + encodeURIComponent(variant.nombre + " ejercicio técnica correcta");
+    const illustration = window.ExerciseIllustrations.buildSVG(variant.ilustracion);
+    const videoId = window.EXERCISE_VIDEOS[variant.nombre];
+    const searchUrl = "https://www.youtube.com/results?search_query=" + encodeURIComponent(variant.nombre + " ejercicio técnica correcta");
+
+    const videoBlock = videoId ? `
+      <details class="vid">
+        <summary><span class="ico">&#9654;</span> Ver vídeo de referencia<span class="src">YouTube</span></summary>
+        <div class="frame" data-id="${videoId}"></div>
+        <a class="alt" href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener noreferrer">Abrir en YouTube &#8599;</a>
+      </details>
+    ` : `
+      <a class="vid-search" href="${searchUrl}" target="_blank" rel="noopener noreferrer">
+        <span class="ico">&#9654;</span> Buscar vídeos de este ejercicio en YouTube
+      </a>
+    `;
 
     body.innerHTML = `
-      <div class="modal-illustration" style="background:var(--${dia.colorTag}-soft); color:var(--${dia.colorTag})">${illustration}</div>
-      <div class="modal-group">${escapeHtml(ex.grupoMuscular)}</div>
       <h2 class="modal-title">${escapeHtml(variant.nombre)}</h2>
+      <div class="fig">${illustration}</div>
 
-      <a class="video-btn" href="${videoUrl}" target="_blank" rel="noopener noreferrer">
-        <span class="play-ico">▶</span>
-        <span>Ver vídeos de este ejercicio en YouTube</span>
-      </a>
+      ${videoBlock}
 
-      <div class="modal-stats">
-        <div class="stat-chip"><small>Equipo</small>${escapeHtml(variant.equipo)}</div>
-        <div class="stat-chip"><small>Series</small>${variant.series}</div>
-        <div class="stat-chip"><small>Repeticiones</small>${escapeHtml(String(variant.repeticiones))}</div>
-        <div class="stat-chip"><small>Descanso</small>${formatRest(variant.descansoSeg)}</div>
+      <div class="pills">
+        <span class="pill soft"><small>Equipo</small>${escapeHtml(variant.equipo)}</span>
+        <span class="pill soft"><small>Series × reps</small>${variant.series}×${escapeHtml(String(variant.repeticiones))}</span>
+        <span class="pill soft"><small>Descanso</small>${formatRest(variant.descansoSeg)}</span>
       </div>
 
-      <div class="modal-section">
-        <h4>💡 Peso recomendado</h4>
-        <p>${escapeHtml(variant.pesoSugerido)}</p>
-      </div>
-
-      <div class="modal-section">
-        <h4>⚠️ Técnica y cuidado articular</h4>
-        <p>${escapeHtml(variant.notas)}</p>
-      </div>
+      <p class="tip"><b>💡 Peso recomendado:</b> ${escapeHtml(variant.pesoSugerido)}</p>
+      <p class="feel"><b>⚠️ Técnica y cuidado articular:</b> ${escapeHtml(variant.notas)}</p>
 
       ${(ex.alternativas && ex.alternativas.length) ? `
       <div class="modal-section">
@@ -286,16 +259,26 @@
           <button type="button" class="timer-btn" id="timer-btn">Iniciar descanso</button>
         </div>
       </div>` : ""}
-
-      <button type="button" class="modal-done-btn ${isDone(ex.id) ? "is-done" : ""}" id="modal-done-btn">
-        ${isDone(ex.id) ? "✓ Marcado como hecho" : "Marcar como hecho"}
-      </button>
     `;
 
-    $$(".alt-chip", body).forEach(chip => {
+    $$(".vid", body).forEach(vid => {
+      vid.addEventListener("toggle", () => {
+        if (!vid.open) return;
+        const frame = $(".frame", vid);
+        if (frame.querySelector("iframe")) return;
+        const id = frame.dataset.id;
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0`;
+        iframe.loading = "lazy";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+        frame.appendChild(iframe);
+      });
+    });
+
+    $$(".alt-pill", body).forEach(chip => {
       chip.addEventListener("click", () => {
         setChosenIndex(ex, parseInt(chip.dataset.idx, 10));
-        stopTimer();
         renderModalContent();
         renderExerciseGrid();
       });
@@ -313,15 +296,10 @@
     if (timerBtn){
       timerBtn.addEventListener("click", () => toggleTimer(variant.descansoSeg));
     }
-
-    $("#modal-done-btn", body).addEventListener("click", () => {
-      const nowDone = !isDone(ex.id);
-      setDone(ex.id, nowDone);
-      renderModalContent();
-      renderExerciseGrid();
-      renderDayProgress();
-    });
   }
+
+  // ---------- Temporizador de descanso ----------
+  let timerInterval = null;
 
   function formatTimer(sec){
     const m = Math.floor(sec/60);
@@ -339,6 +317,7 @@
   function toggleTimer(totalSec){
     const display = $("#timer-display");
     const btn = $("#timer-btn");
+    if (!display || !btn) return;
     if (timerInterval){
       stopTimer();
       btn.textContent = "Reanudar";
@@ -352,7 +331,6 @@
         display.textContent = "0:00";
         stopTimer();
         btn.textContent = "Reiniciar";
-        btn.dataset.finished = "1";
         if (navigator.vibrate) navigator.vibrate(200);
         return;
       }
@@ -379,11 +357,11 @@
 
   // ---------- Init ----------
   function init(){
-    initTheme();
     $("#modal-close").addEventListener("click", closeModal);
     $("#exercise-modal").addEventListener("click", (e) => {
       if (e.target.id === "exercise-modal") closeModal();
     });
+    $("#exercise-modal").addEventListener("close", stopTimer);
 
     loadData().then(data => {
       DATA = data;
@@ -393,7 +371,7 @@
       const validDay = DATA.dias.some(d => d.id === savedDay) ? savedDay : DATA.dias[0].id;
       selectDay(validDay);
     }).catch(err => {
-      $("#exercise-grid").innerHTML = `<p style="color:#b00020">No se pudo cargar la rutina (${escapeHtml(err.message)}). Asegúrate de que el archivo js/exercises-data.js esté presente y se cargue antes que js/app.js.</p>`;
+      $("#exercise-grid").innerHTML = `<p style="color:#b00020">No se pudo cargar la rutina (${escapeHtml(err.message)}). Asegúrate de que js/exercises-data.js, js/illustrations.js y js/videos.js se carguen antes que js/app.js.</p>`;
     });
   }
 

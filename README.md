@@ -10,16 +10,15 @@ Todos los ejercicios, pesos sugeridos, series, repeticiones y descansos están e
 
 ## Qué incluye
 
-- Diseño mobile-first: pantallas táctiles grandes, modal del ejercicio a pantalla completa en el móvil
-- Ilustración (pictograma) de la postura de cada uno de los 51 ejercicios y alternativas, dibujada en SVG (ligera, nítida, sin fotos que descargar)
-- Botón "Ver vídeos de este ejercicio en YouTube" en cada ejercicio: abre una búsqueda de YouTube con el nombre exacto del ejercicio (no enlaza a un vídeo concreto, para no depender de que siga existiendo)
+- Mismo estilo visual que la app hermana [`rutina-movilidad`](https://github.com/amsiceza/rutina-movilidad): grid de fichas cuadradas, modal del ejercicio (pantalla completa en el móvil, recuadro centrado desde tablet/escritorio), tipografía Fraunces + Nunito Sans, paleta cálida con modo claro/oscuro automático según el sistema
+- Ilustración de la postura de cada uno de los 51 ejercicios y alternativas, dibujada a mano en SVG siguiendo esa misma receta visual (torso, extremidades, cabeza, elipse de acento), con su propio lenguaje para barra, mancuernas, polea/cable y banco
+- **Vídeo real incrustado en la propia app** (no un enlace externo): se carga perezosamente al abrir el desplegable "Ver vídeo de referencia", con enlace de escape a YouTube. 49 de los 51 ejercicios tienen un vídeo verificado por búsqueda real (no inventado); los 2 restantes (cardio en cinta y caminata al aire libre, donde no se encontró un tutorial claro) muestran en su lugar un botón de búsqueda en YouTube
 - Recomendaciones generales pensadas para entrenar con seguridad a los 60 años (calentamiento, cómo elegir el peso con la escala RIR, progresión, cuidado articular, descanso entre sesiones)
 - Cada ejercicio trae **2-3 alternativas** por si un día apetece cambiarlo (se recuerda tu elección)
 - Peso sugerido y notas de técnica por ejercicio
 - Temporizador de descanso entre series
 - Registro rápido del peso usado, guardado en tu propio móvil/navegador
 - Casilla "Hecho" por ejercicio y barra de progreso del día (se reinicia cada día)
-- Modo claro / oscuro
 
 Todo se guarda únicamente en el `localStorage` de tu navegador: no hay servidor, cuenta ni datos que salgan de tu dispositivo.
 
@@ -57,6 +56,8 @@ Para cambiar un ejercicio, peso sugerido, series, repeticiones o añadir una alt
 ```
 
 `ilustracion` debe ser una de las claves definidas en [`js/illustrations.js`](js/illustrations.js) (por ejemplo `"sentadilla"`, `"curl-biceps"`, `"plancha-frontal"`...). Si pones una clave que no existe, se usa un pictograma genérico de respaldo.
+
+El vídeo de cada ejercicio se busca por **nombre exacto** en [`js/videos.js`](js/videos.js) (`window.EXERCISE_VIDEOS`). Si cambias el `nombre` de un ejercicio o añades uno nuevo, añade también su entrada ahí con el ID del vídeo de YouTube (los 11 caracteres después de `v=` en la URL); si no hay ninguna entrada, la app muestra automáticamente un botón de búsqueda en YouTube en su lugar.
 
 ## Aviso
 
