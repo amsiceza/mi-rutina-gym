@@ -145,12 +145,15 @@
     const tile = document.createElement("div");
     tile.className = "ex-tile" + (done ? " is-done" : "");
 
-    const illustration = window.ExerciseIllustrations.buildSVG(variant.ilustracion);
+    const imgFile = window.EXERCISE_IMAGES[variant.nombre];
+    const photo = imgFile
+      ? `<img src="img/exercises/${imgFile}" alt="${escapeHtml(variant.nombre)}" loading="lazy">`
+      : "";
     const altBadge = idx > 0 ? `<span class="alt-badge">🔄 alt.</span>` : "";
 
     tile.innerHTML = `
       <button type="button" class="tile-open">
-        <div class="tile-fig">${altBadge}${illustration}</div>
+        <div class="tile-fig">${altBadge}${photo}</div>
         <div class="tile-head">
           <span class="tile-n">${String(n).padStart(2, "0")}</span>
           <h3>${escapeHtml(variant.nombre)}</h3>
@@ -204,7 +207,10 @@
     const savedWeight = localStorage.getItem(weightKey) || "";
     const showWeightInput = !/sin material|peso corporal/i.test(variant.equipo || "");
 
-    const illustration = window.ExerciseIllustrations.buildSVG(variant.ilustracion);
+    const imgFile = window.EXERCISE_IMAGES[variant.nombre];
+    const photo = imgFile
+      ? `<img src="img/exercises/${imgFile}" alt="${escapeHtml(variant.nombre)}">`
+      : "";
     const videoId = window.EXERCISE_VIDEOS[variant.nombre];
     const searchUrl = "https://www.youtube.com/results?search_query=" + encodeURIComponent(variant.nombre + " ejercicio técnica correcta");
 
@@ -222,7 +228,7 @@
 
     body.innerHTML = `
       <h2 class="modal-title">${escapeHtml(variant.nombre)}</h2>
-      <div class="fig">${illustration}</div>
+      ${photo ? `<div class="fig">${photo}</div>` : ""}
 
       ${videoBlock}
 
@@ -371,7 +377,7 @@
       const validDay = DATA.dias.some(d => d.id === savedDay) ? savedDay : DATA.dias[0].id;
       selectDay(validDay);
     }).catch(err => {
-      $("#exercise-grid").innerHTML = `<p style="color:#b00020">No se pudo cargar la rutina (${escapeHtml(err.message)}). Asegúrate de que js/exercises-data.js, js/illustrations.js y js/videos.js se carguen antes que js/app.js.</p>`;
+      $("#exercise-grid").innerHTML = `<p style="color:#b00020">No se pudo cargar la rutina (${escapeHtml(err.message)}). Asegúrate de que js/exercises-data.js, js/images.js y js/videos.js se carguen antes que js/app.js.</p>`;
     });
   }
 
